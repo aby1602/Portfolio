@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DailyWorkout.com</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://i.imgur.com/rKzvMTb.png') repeat center center fixed;
+      background-size: contain;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      max-width: 850px;
+      margin: 40px auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .days {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .day-card {
+      background: #ff6f61;
+      padding: 20px 25px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.4s ease, background 0.3s;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1rem;
+      animation: float 3s ease-in-out infinite;
+      width: 130px;
+      height: 130px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .day-card:hover {
+      background: #ff9478;
+      transform: scale(1.1);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .hidden {
+      display: none;
+    }
+    .exercise {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+    input, button {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin: 5px 0;
+      width: 100%;
+    }
+    .exercise-log {
+      margin-top: 20px;
+    }
+    #time-display {
+      font-size: 2rem;
+      text-align: center;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 10px;">
+      <img src="https://i.imgur.com/tX1VNg7.png" alt="Logo" style="width: 60px; vertical-align: middle;">
+      <h1 style="display: inline; margin-left: 10px; font-size: 2rem;">DailyWorkout.com</h1>
+    </div>
+    <div style="text-align: center; margin-top: -10px;">
+      <img src="https://i.imgur.com/L3yECrF.png" alt="Workout Pose" style="width: 180px; margin-bottom: 10px; filter: drop-shadow(0 0 5px #fff6);">
+    </div>
+    <div class="days" id="day-selection">
+      <div class="day-card" onclick="loadDay(1)">Day 1<br>Upper Body</div>
+      <div class="day-card" onclick="loadDay(2)">Day 2<br>Lower Body</div>
+      <div class="day-card" onclick="loadDay(3)">Day 3<br>Recovery</div>
+      <div class="day-card" onclick="loadDay(4)">Day 4<br>HIIT</div>
+      <div class="day-card" onclick="loadDay(5)">Day 5<br>Arms & Abs</div>
+    </div>
+
+    <div id="workout-area" class="hidden">
+      <div style="text-align: right; margin-bottom: 10px;">
+        <button onclick="goBackToDays()" style="background:#ccc; color:#000; padding:6px 12px; border-radius:6px; font-weight:bold;">⬅ Back to Days</button>
+      </div>
+      <h2 id="day-title"></h2>
+      <div id="exercises"></div>
+      <div class="exercise-log">
+        <h3>Log Exercise</h3>
+        <input type="text" id="exercise" placeholder="Exercise Name">
+        <input type="number" id="sets" placeholder="Sets">
+        <input type="number" id="reps" placeholder="Reps">
+        <input type="number" id="weight" placeholder="Weight (kg)">
+        <button onclick="logExercise()">Log</button>
+        <ul id="log-list"></ul>
+        <h3 id="calories-burned">Calories Burned: 0 kcal</h3>
+        <button onclick="resetLogs()" style="background:#ff4d4d; color:white; font-weight:bold; padding:8px 12px; border:none; border-radius:6px; margin-top:10px;">🔄 Reset All</button>
+      </div>
+      <div class="timer">
+        <h3>⏱️ Timer</h3>
+        <div id="time-display">00:00</div>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="resetTimer()">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const workouts = {
+      1: ["Incline Dumbbell Press", "Lat Pulldowns", "Seated Row", "Bicep Curls", "Triceps Pushdown"],
+      2: ["Barbell Squat", "Leg Press", "Hamstring Curl", "Standing Calf Raise", "Glute Bridges"],
+      3: ["Brisk Walking 30 min", "Foam Rolling", "Stretching Routine", "Yoga Flows"],
+      4: ["Jump Squats", "Push-Ups", "Burpees", "Mountain Climbers", "Battle Ropes"],
+      5: ["EZ Bar Curls", "Overhead Triceps Extension", "Cable Curls", "Russian Twists", "Hanging Leg Raises"]
+    };
+
+    let calories = 0;
+    let timer, seconds = 0;
+
+    function loadDay(day) {
+      document.getElementById('day-selection').classList.add('hidden');
+      document.getElementById('workout-area').classList.remove('hidden');
+      document.getElementById('day-title').textContent = `Day ${day} Workout`;
+      const exDiv = document.getElementById('exercises');
+      exDiv.innerHTML = '';
+      workouts[day].forEach(ex => {
+        const div = document.createElement('div');
+        div.className = 'exercise';
+        div.innerHTML = `
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <strong>${ex}</strong><br>
+              <small>3 sets × 12 reps</small>
+              <div style="margin-top:10px;">
+                <input type="number" placeholder="Sets" class="sets" style="width:60px" />
+                <input type="number" placeholder="Reps" class="reps" style="width:60px" />
+                <input type="number" placeholder="Weight" class="weight" style="width:80px" />
+                <button onclick="logInlineExercise(this)">📋 Log</button>
+              </div>
+            </div>
+            <div>
+              <img src='https://i.imgur.com/5pXzYKe.png' alt='Pose' style='height:70px; margin-left:10px;'>
+              <div class='inline-calories' style='margin-top:5px;'>🔥 0 kcal</div>
+            </div>
+          </div>`;
+        exDiv.appendChild(div);
+        exDiv.appendChild(div);
+      });
+    }
+
+    function logExercise() {
+      const ex = document.getElementById("exercise").value;
+      const sets = +document.getElementById("sets").value;
+      const reps = +document.getElementById("reps").value;
+      const weight = +document.getElementById("weight").value;
+      if (!ex || !sets || !reps || !weight) return alert("Fill all fields");
+      const burn = Math.round((sets * reps * weight) / 40);
+      calories += burn;
+      const li = document.createElement("li");
+      li.textContent = `${ex}: ${sets}×${reps} @ ${weight}kg = ${burn} kcal`;
+      document.getElementById("log-list").appendChild(li);
+      document.getElementById("calories-burned").textContent = `Calories Burned: ${calories} kcal`;
+      document.querySelectorAll("#exercise, #sets, #reps, #weight").forEach(e => e.value = '');
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => {
+        seconds++;
+        const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+        const s = String(seconds % 60).padStart(2, '0');
+        document.getElementById("time-display").textContent = `${m}:${s}`;
+      }, 1000);
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      seconds = 0;
+      document.getElementById("time-display").textContent = "00:00";
+    }
+  function logInlineExercise(button) {
+  const parent = button.closest('.exercise');
+  const sets = +parent.querySelector('.sets').value;
+  const reps = +parent.querySelector('.reps').value;
+  const weight = +parent.querySelector('.weight').value;
+  if (!sets || !reps || !weight) return alert("Fill all fields");
+  const burn = Math.round((sets * reps * weight) / 40);
+  calories += burn;
+  parent.querySelector('.inline-calories').textContent = `🔥 ${burn} kcal`;
+  document.getElementById("calories-burned").textContent = `Calories Burned: ${calories} kcal`;
+}
+
+function resetLogs() {
+  calories = 0;
+  document.getElementById("log-list").innerHTML = '';
+  document.querySelectorAll(".inline-calories").forEach(el => el.textContent = '🔥 0 kcal');
+  document.getElementById("calories-burned").textContent = `Calories Burned: 0 kcal`;
+  document.querySelectorAll(".sets, .reps, .weight").forEach(input => input.value = '');
+}
+
+function goBackToDays() {
+  document.getElementById('workout-area').classList.add('hidden');
+  document.getElementById('day-selection').classList.remove('hidden');
+}
+
+</script>
+</body>
+</html>
