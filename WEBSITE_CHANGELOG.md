@@ -34,6 +34,36 @@ This file is the working change log for **abikumar.com**.
 
 # 2026-10-06 — Portfolio Refresh
 
+## 19:27 AEDT — Repository publishing & README
+**Status:** Done
+
+Commit:
+- `40930d1` — Add portfolio README and deployment guide
+
+Changes:
+- Confirmed the full portfolio source is stored in the public GitHub repository.
+- Confirmed GitHub Pages deployment is active.
+- Added a professional `README.md` to the repository.
+- Added the live website URL.
+- Added links to Home, Projects, Research, Contact, and Resume.
+- Documented the tech stack.
+- Documented key website features.
+- Added a repository structure overview.
+- Added local run instructions.
+- Added GitHub Pages deployment notes.
+- Linked the permanent website changelog from the README.
+
+Public website:
+- `https://www.abikumar.com/`
+
+Source repository:
+- `https://github.com/aby1602/Portfolio`
+
+Reason:
+The site was already deployed and source-controlled, but the repository needed a clear project landing page so it can be shared professionally alongside the live portfolio.
+
+---
+
 ## 18:58 AEDT — Skills & Interests heading polish
 **Status:** Done
 
@@ -418,4 +448,4 @@ Anything useful for future maintenance.
 
 ---
 
-_Last documented update: 2026-10-06 18:58 AEDT_
+_Last documented update: 2026-10-06 19:27 AEDT_
