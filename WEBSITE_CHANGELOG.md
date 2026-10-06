@@ -34,6 +34,36 @@ This file is the working change log for **abikumar.com**.
 
 # 2026-10-06 — Portfolio Refresh
 
+## 18:55 AEDT — Skills & Interests card redesign
+**Status:** Done
+
+Commit:
+- `e3c02ca` — Redesign skills and interests section
+
+Changes:
+- Replaced the old plain Skills and Interests lists on the homepage.
+- Kept the overall two-column layout so the section still matches the existing site.
+- Added four compact Skills capability blocks:
+  - Security Operations
+  - Security Tools
+  - Engineering
+  - Cloud & Infrastructure
+- Added six Interests cards with icons:
+  - Cyber Threat Intelligence
+  - Security Engineering
+  - Cloud Security
+  - AI & Automation
+  - IoT Security
+  - Travel · Gaming · Music
+- Added subtle hover lift, blue border emphasis, and cyber-panel styling.
+- Added responsive behaviour so the blocks collapse cleanly to one column on mobile.
+- Avoided skill percentages, progress bars, and oversized technology logos.
+
+Reason:
+The previous section looked more like a resume list. The new version is easier to scan, more visually balanced, and better aligned with the cybersecurity portfolio style.
+
+---
+
 ## 18:45 AEDT — Cyber background cache refresh
 **Status:** Done
 
@@ -268,7 +298,7 @@ These older commits remain in Git history and are not rewritten here individuall
 # Pending / Recommended Improvements
 
 ## Skills & Interests section
-**Status:** Proposed — not yet implemented
+**Status:** Implemented at 18:55 AEDT
 **Added to notes:** 2026-10-06
 
 ### Current issue
@@ -367,4 +397,4 @@ Anything useful for future maintenance.
 
 ---
 
-_Last documented update: 2026-10-06 18:45 AEDT_
+_Last documented update: 2026-10-06 18:55 AEDT_
