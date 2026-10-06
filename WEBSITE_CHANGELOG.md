@@ -449,3 +449,9 @@ Anything useful for future maintenance.
 ---
 
 _Last documented update: 2026-10-06 19:27 AEDT_
+
+## 2026-10-06 19:41 AEDT — Gym Workout Tracker live link
+- Kept the existing project name **Gym Workout Tracker**.
+- Updated the project description to better explain the daily training plan, set/rep/weight logging, rest timers and calorie tracking features.
+- Changed the project CTA to **Live site ↗** and linked it to `https://aby1602.github.io/dailyworkout/`.
+- Updated the project tag from `UX` to `Fitness UX` for clearer context.
