@@ -25,7 +25,11 @@ body>*:not(canvas){position:relative;z-index:1}
 .resume-entry{display:flex;padding:24px 0;border-bottom:1px solid #333}.resume-date{color:#777;width:180px;font-size:.87rem}.resume-details{flex:1;padding-left:30px}.resume-details h5{font-size:1.16rem;font-weight:600;color:#6ea8fe}.resume-details li{color:#d2d2d2;line-height:1.65;margin-bottom:5px}
 .bottom-section{display:flex;gap:48px;flex-wrap:wrap;max-width:1000px;margin:82px auto 60px;border-top:1px solid #444;padding-top:42px}.bottom-column{flex:1 1 360px}.bottom-column h5{color:#6ea8fe}.bottom-column li{color:#d7d7d7;margin-bottom:8px}
 .skill-interest-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:1000px;margin:82px auto 60px;border-top:1px solid #444;padding-top:42px}
-.section-mini-title{font-size:1.05rem;font-weight:600;color:#6ea8fe;margin-bottom:16px}
+.section-mini-heading{margin-bottom:18px}
+.section-mini-kicker{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#72809a;margin-bottom:5px}
+.section-mini-title{font-size:1.24rem;font-weight:600;color:#fff;margin:0;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.section-mini-title::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(110,168,254,.45),rgba(110,168,254,0))}
+.section-mini-title i{color:#6ea8fe;font-size:.9rem}
 .skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .skill-group,.interest-card{background:rgba(17,22,30,.82);border:1px solid rgba(255,255,255,.075);border-radius:12px;padding:15px 16px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
 .skill-group:hover,.interest-card:hover{transform:translateY(-2px);border-color:rgba(110,168,254,.32);box-shadow:0 10px 24px rgba(0,0,0,.18)}
@@ -85,7 +89,7 @@ body>*:not(canvas){position:relative;z-index:1}
 
 <div class="skill-interest-grid">
   <section>
-    <h5 class="section-mini-title">Skills</h5>
+    <div class="section-mini-heading"><span class="section-mini-kicker">Toolkit</span><h5 class="section-mini-title"><i class="fas fa-terminal"></i>Skills</h5></div>
     <div class="skill-groups">
       <div class="skill-group"><small>Security Operations</small><p>SIEM Monitoring · Incident Response · Threat Intelligence · Log Analysis</p></div>
       <div class="skill-group"><small>Security Tools</small><p>Splunk · CrowdStrike Falcon · Wireshark · Security Onion</p></div>
@@ -95,7 +99,7 @@ body>*:not(canvas){position:relative;z-index:1}
   </section>
 
   <section>
-    <h5 class="section-mini-title">Interests</h5>
+    <div class="section-mini-heading"><span class="section-mini-kicker">Focus Areas</span><h5 class="section-mini-title"><i class="fas fa-crosshairs"></i>Interests</h5></div>
     <div class="interest-grid">
       <div class="interest-card"><i class="fas fa-eye"></i><span>Cyber Threat Intelligence</span></div>
       <div class="interest-card"><i class="fas fa-shield-halved"></i><span>Security Engineering</span></div>
