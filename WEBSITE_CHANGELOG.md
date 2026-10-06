@@ -455,3 +455,8 @@ _Last documented update: 2026-10-06 19:27 AEDT_
 - Updated the project description to better explain the daily training plan, set/rep/weight logging, rest timers and calorie tracking features.
 - Changed the project CTA to **Live site ↗** and linked it to `https://aby1602.github.io/dailyworkout/`.
 - Updated the project tag from `UX` to `Fitness UX` for clearer context.
+
+## 2026-10-06 19:45 AEDT — Gym Workout Tracker Medium article
+- Added a **Blog Post ↗** button beside **Open Project ↗** on the **Gym Workout Tracker** project card.
+- Linked it to the Medium article **Body Lab: A Personal Workout Tracker Built Around the Way You Actually Train**.
+- Kept the existing project name, description and live project link unchanged.
