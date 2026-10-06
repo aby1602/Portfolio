@@ -24,6 +24,18 @@ body>*:not(canvas){position:relative;z-index:1}
 .edu-card{padding:26px;text-align:center;min-height:200px;display:flex;flex-direction:column;justify-content:space-between}
 .resume-entry{display:flex;padding:24px 0;border-bottom:1px solid #333}.resume-date{color:#777;width:180px;font-size:.87rem}.resume-details{flex:1;padding-left:30px}.resume-details h5{font-size:1.16rem;font-weight:600;color:#6ea8fe}.resume-details li{color:#d2d2d2;line-height:1.65;margin-bottom:5px}
 .bottom-section{display:flex;gap:48px;flex-wrap:wrap;max-width:1000px;margin:82px auto 60px;border-top:1px solid #444;padding-top:42px}.bottom-column{flex:1 1 360px}.bottom-column h5{color:#6ea8fe}.bottom-column li{color:#d7d7d7;margin-bottom:8px}
+.skill-interest-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:1000px;margin:82px auto 60px;border-top:1px solid #444;padding-top:42px}
+.section-mini-title{font-size:1.05rem;font-weight:600;color:#6ea8fe;margin-bottom:16px}
+.skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.skill-group,.interest-card{background:rgba(17,22,30,.82);border:1px solid rgba(255,255,255,.075);border-radius:12px;padding:15px 16px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.skill-group:hover,.interest-card:hover{transform:translateY(-2px);border-color:rgba(110,168,254,.32);box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.skill-group small{display:block;color:#7f8ba0;font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;margin-bottom:7px}
+.skill-group p{margin:0;color:#d9dde4;font-size:.87rem;line-height:1.55}
+.interest-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.interest-card{display:flex;align-items:center;gap:10px;color:#d9dde4;font-size:.9rem;min-height:64px}
+.interest-card i{color:#6ea8fe;width:20px;text-align:center}
+@media(max-width:768px){.skill-interest-grid{grid-template-columns:1fr;gap:28px}.skill-groups,.interest-grid{grid-template-columns:1fr}}
+
 .outside-label{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:#777;margin:24px 0 6px!important}.outside-icons{margin:0!important}
 @media(max-width:768px){.hero-shell{flex-direction:column;padding:34px 22px}.left-panel{width:100%;padding:0 0 26px;border-right:0;border-bottom:1px solid #333}.right-panel{padding-left:0;margin-top:28px}.resume-entry{flex-direction:column}.resume-date{width:auto;margin-bottom:10px}.resume-details{padding-left:0}}
 </style>
@@ -71,9 +83,28 @@ body>*:not(canvas){position:relative;z-index:1}
 <div class="resume-entry"><div class="resume-date">May 2021 – Jul 2021</div><div class="resume-details"><h5>Research Intern, Delhi University</h5><p><strong>New Delhi, India</strong></p><ul><li>Prepared academic datasets using Pandas and NumPy.</li><li>Visualised research insights and supported predictive-analysis work.</li></ul></div></div>
 </section>
 
-<div class="bottom-section">
-<div class="bottom-column"><h5>Skills</h5><ul style="list-style:none;padding-left:0"><li><strong>Tools:</strong> Splunk, CrowdStrike, Wireshark, JIRA</li><li><strong>Programming:</strong> Python, SQL, C/C++</li><li><strong>Platforms:</strong> Azure, GCP, Snowflake</li><li><strong>Practices:</strong> IAM, DevSecOps</li></ul></div>
-<div class="bottom-column"><h5>Interests</h5><ul style="list-style:none;padding-left:0"><li>Cyber Threat Intelligence</li><li>Cloud Infrastructure Security</li><li>Automation & AI</li></ul></div>
+<div class="skill-interest-grid">
+  <section>
+    <h5 class="section-mini-title">Skills</h5>
+    <div class="skill-groups">
+      <div class="skill-group"><small>Security Operations</small><p>SIEM Monitoring · Incident Response · Threat Intelligence · Log Analysis</p></div>
+      <div class="skill-group"><small>Security Tools</small><p>Splunk · CrowdStrike Falcon · Wireshark · Security Onion</p></div>
+      <div class="skill-group"><small>Engineering</small><p>Python · SQL · C/C++ · Flask · MQTT</p></div>
+      <div class="skill-group"><small>Cloud & Infrastructure</small><p>Azure · GCP · Docker · Kubernetes · IAM</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h5 class="section-mini-title">Interests</h5>
+    <div class="interest-grid">
+      <div class="interest-card"><i class="fas fa-eye"></i><span>Cyber Threat Intelligence</span></div>
+      <div class="interest-card"><i class="fas fa-shield-halved"></i><span>Security Engineering</span></div>
+      <div class="interest-card"><i class="fas fa-cloud"></i><span>Cloud Security</span></div>
+      <div class="interest-card"><i class="fas fa-robot"></i><span>AI & Automation</span></div>
+      <div class="interest-card"><i class="fas fa-microchip"></i><span>IoT Security</span></div>
+      <div class="interest-card"><i class="fas fa-compass"></i><span>Travel · Gaming · Music</span></div>
+    </div>
+  </section>
 </div>
 <footer class="site-footer">© 2026 Abhishek Kumar · Built for the web</footer>
 
