@@ -34,6 +34,27 @@ This file is the working change log for **abikumar.com**.
 
 # 2026-10-06 — Portfolio Refresh
 
+## 18:58 AEDT — Skills & Interests heading polish
+**Status:** Done
+
+Commit:
+- `f568d8d` — Polish skills and interests headings
+
+Changes:
+- Upgraded the Skills and Interests headings without changing the section layout.
+- Added small contextual labels:
+  - `Toolkit` above Skills
+  - `Focus Areas` above Interests
+- Added subtle Font Awesome icons.
+- Increased heading size and hierarchy.
+- Added a fading blue divider line beside each heading.
+- Kept the styling consistent with the dark cyber-security theme.
+
+Reason:
+The new cards looked stronger than the original headings. This change brings the section titles up to the same visual quality without over-designing the page.
+
+---
+
 ## 18:55 AEDT — Skills & Interests card redesign
 **Status:** Done
 
@@ -397,4 +418,4 @@ Anything useful for future maintenance.
 
 ---
 
-_Last documented update: 2026-10-06 18:55 AEDT_
+_Last documented update: 2026-10-06 18:58 AEDT_
