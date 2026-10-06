@@ -1,308 +1,587 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#07090d">
-  <meta name="description" content="Abhishek Kumar — cybersecurity professional building secure systems, automation, IoT and cloud projects.">
-  <title>Abhishek Kumar — Cybersecurity & Security Engineering</title>
-  <link rel="icon" href="logo.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="theme-color" content="#1e1e1e"/>
+  <meta name="description" content="Abhishek Kumar | Cybersecurity Professional"/>
+  <title>Abi Kumar | Cybersecurity Professional</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="logo.png" rel="icon" type="image/png"/>
+
   <style>
-    :root{
-      --bg:#07090d;--panel:#0d1117;--panel2:#111722;--text:#f5f7fa;--muted:#8d97a8;
-      --line:rgba(255,255,255,.09);--blue:#6f93ff;--violet:#9a78ff;--green:#53e89b;
-      --max:1180px;--radius:24px
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 28px;
+      background-image: url('https://i.imgur.com/UYiPzX4.png');
+      background-repeat: repeat;
+      background-blend-mode: soft-light;
+      background-size: 300px;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
-    body:before{content:"";position:fixed;inset:0;z-index:-3;background:
-      radial-gradient(circle at 15% 5%,rgba(87,119,255,.13),transparent 28%),
-      radial-gradient(circle at 85% 20%,rgba(154,120,255,.09),transparent 26%),
-      linear-gradient(#07090d,#07090d)}
-    body:after{content:"";position:fixed;inset:0;z-index:-2;opacity:.22;pointer-events:none;
-      background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-      background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 78%)}
-    a{color:inherit;text-decoration:none}
-    button{font:inherit}
-    .wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
-    .nav{position:sticky;top:0;z-index:50;padding:18px 0;background:linear-gradient(to bottom,rgba(7,9,13,.96),rgba(7,9,13,.76),transparent);backdrop-filter:blur(16px)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);background:rgba(13,17,23,.72);border-radius:18px;padding:11px 14px 11px 18px}
-    .brand{font:700 20px Space Grotesk;letter-spacing:-.04em}.brand span{color:var(--blue)}
-    .nav-links{display:flex;gap:26px;align-items:center;color:#b4bdcb;font-size:14px}
-    .nav-links a:hover{color:white}
-    .availability{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(83,232,155,.2);background:rgba(83,232,155,.07);color:#c7f7df;border-radius:999px;padding:8px 12px;font-size:12px}
-    .dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 14px var(--green)}
-    .hero{min-height:calc(100vh - 90px);display:grid;grid-template-columns:1.35fr .8fr;gap:64px;align-items:center;padding:70px 0 90px}
-    .eyebrow,.section-kicker{font:500 12px DM Mono;color:#99a5b8;letter-spacing:.13em;text-transform:uppercase}
-    h1{font:600 clamp(58px,8vw,108px)/.91 Space Grotesk;margin:20px 0 26px;letter-spacing:-.07em;max-width:850px}
-    h1 .gradient{background:linear-gradient(105deg,#fff 5%,#9eb3ff 50%,#a987ff);-webkit-background-clip:text;color:transparent}
-    .lead{font-size:18px;line-height:1.7;color:#aeb7c5;max-width:690px}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:34px 0 40px}
-    .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 17px;border-radius:12px;border:1px solid var(--line);font-size:14px;font-weight:600;transition:.2s}
-    .btn.primary{background:#f5f7fa;color:#090b10;border-color:#f5f7fa}.btn.primary:hover{transform:translateY(-2px)}
-    .btn.secondary{background:rgba(255,255,255,.025);color:#dce2eb}.btn.secondary:hover{border-color:rgba(111,147,255,.45)}
-    .stack-row{display:flex;gap:9px;flex-wrap:wrap}
-    .chip{font:400 11px DM Mono;color:#aab5c5;border:1px solid var(--line);padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.025)}
-    .console{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(17,23,34,.85),rgba(10,13,19,.86));box-shadow:0 30px 80px rgba(0,0,0,.42);overflow:hidden;transform:perspective(1200px) rotateY(-3deg)}
-    .console-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
-    .lights{display:flex;gap:6px}.lights i{width:7px;height:7px;border-radius:50%;background:#39404a}.lights i:last-child{background:var(--green)}
-    .console-body{padding:22px;font:12px/1.7 DM Mono;color:#8e9bac;min-height:420px}
-    .console-row{display:grid;grid-template-columns:96px 1fr;gap:12px;margin-bottom:7px}.console-row b{color:#dce5f4;font-weight:500}
-    .status{color:var(--green)!important}
-    .event-title{margin:26px 0 10px;color:#617089}
-    #event-stream div{margin:7px 0;opacity:0;animation:fade .55s forwards}.event-time{color:#647187}.event-ok{color:#8fb0ff}
-    @keyframes fade{to{opacity:1}}
-    .cursor{display:inline-block;width:7px;height:13px;background:var(--green);vertical-align:-2px;animation:blink 1s infinite}@keyframes blink{50%{opacity:.2}}
-    section{padding:90px 0}
-    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:34px}
-    .section-head h2{font:600 clamp(38px,5vw,62px)/1 Space Grotesk;letter-spacing:-.055em;margin:12px 0 0}
-    .section-head p{max-width:520px;color:var(--muted);line-height:1.65;margin:0}
-    .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
-    .card{position:relative;border:1px solid var(--line);background:linear-gradient(145deg,rgba(17,23,34,.9),rgba(11,14,20,.82));border-radius:var(--radius);padding:28px;overflow:hidden;transition:.25s}
-    .card:hover{transform:translateY(-3px);border-color:rgba(111,147,255,.32)}
-    .card:before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(111,147,255,.08);filter:blur(60px);right:-120px;top:-120px;pointer-events:none}
-    .feature{grid-column:span 7;min-height:430px}.side{grid-column:span 5;min-height:208px}.third{grid-column:span 4;min-height:240px}
-    .card-num{font:400 11px DM Mono;color:#6e7b90}.card h3{font:600 28px/1.1 Space Grotesk;letter-spacing:-.04em;margin:18px 0 12px}
-    .card p{color:#919daf;line-height:1.65;font-size:14px;max-width:620px}
-    .card-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}.card-tags span{font:400 10px DM Mono;padding:7px 9px;border:1px solid var(--line);border-radius:999px;color:#8fa0b8}
-    .project-link{position:absolute;right:25px;bottom:23px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);font-size:18px}
-    .feature .visual{position:absolute;right:24px;bottom:24px;width:44%;height:46%;border:1px solid var(--line);border-radius:18px;background:
-      radial-gradient(circle at 30% 30%,rgba(111,147,255,.28),transparent 30%),
-      linear-gradient(145deg,#111927,#090d14);overflow:hidden}
-    .visual:after{content:"MQTT / DATA STREAM";position:absolute;left:16px;bottom:13px;font:10px DM Mono;color:#9eb3ff;letter-spacing:.1em}
-    .visual-line{position:absolute;height:1px;background:linear-gradient(90deg,transparent,#7095ff,transparent);width:140%;left:-20%;animation:scan 3s linear infinite}@keyframes scan{from{top:10%}to{top:90%}}
-    .currently{display:flex;align-items:center;gap:9px;font:12px DM Mono;color:#b7c1cf;margin-top:34px}.currently i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
-    .timeline{border-top:1px solid var(--line)}
-    .job{display:grid;grid-template-columns:180px 1fr 28px;gap:35px;padding:34px 6px;border-bottom:1px solid var(--line)}
-    .job-date{font:12px DM Mono;color:#737f92}.job h3{font:600 25px Space Grotesk;letter-spacing:-.03em;margin:0 0 6px}.job-role{color:#93a1b5;font-size:14px}
-    .job ul{color:#939fb0;line-height:1.7;padding-left:18px;margin:18px 0 0;font-size:14px}.job-arrow{font-size:24px;color:#516078;transition:.2s}.job:hover .job-arrow{color:#8eadff;transform:translateX(3px)}
-    .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.skillbox{padding:24px;border:1px solid var(--line);border-radius:20px;background:rgba(13,17,23,.6)}
-    .skillbox h4{font:500 12px DM Mono;color:#8090a7;text-transform:uppercase;letter-spacing:.09em;margin:0 0 18px}.skillbox p{margin:0;color:#d0d6df;line-height:1.9;font-size:14px}
-    .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}
-    .portrait{min-height:490px;border-radius:26px;border:1px solid var(--line);overflow:hidden;background:#0b0f15}
-    .portrait img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) contrast(1.03)}
-    .about-card{border:1px solid var(--line);border-radius:26px;padding:38px;background:rgba(13,17,23,.74)}
-    .about-card h2{font:600 48px/1 Space Grotesk;letter-spacing:-.05em;margin:8px 0 24px}.about-card p{color:#a0aaba;line-height:1.75;font-size:15px}
-    .facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}.fact{border:1px solid var(--line);border-radius:14px;padding:14px;color:#bcc5d2;font-size:13px}
-    .research-list{display:grid;gap:10px}.paper{display:grid;grid-template-columns:64px 1fr auto;gap:20px;align-items:center;border:1px solid var(--line);border-radius:18px;padding:18px 20px;background:rgba(13,17,23,.58)}
-    .paper-num{font:12px DM Mono;color:#6e7b90}.paper h3{font:600 17px Space Grotesk;margin:0 0 6px}.paper p{margin:0;color:#7f8da0;font-size:13px}.paper a{font-size:18px;color:#8292aa}
-    .education{display:grid;grid-template-columns:1fr 1fr;gap:14px}.edu{border:1px solid var(--line);border-radius:22px;padding:26px;background:rgba(13,17,23,.55)}
-    .edu small{font:11px DM Mono;color:#75839a}.edu h3{font:600 22px Space Grotesk;margin:14px 0 9px}.edu p{margin:0;color:#8f9bae;line-height:1.6;font-size:14px}
-    .contact{padding:110px 0 70px}.contact-panel{border:1px solid var(--line);border-radius:30px;padding:55px;background:
-      radial-gradient(circle at 85% 15%,rgba(111,147,255,.16),transparent 30%),rgba(13,17,23,.72)}
-    .contact-panel h2{font:600 clamp(45px,7vw,84px)/.95 Space Grotesk;letter-spacing:-.06em;margin:8px 0 25px;max-width:850px}
-    .contact-panel p{color:#9aa6b7;max-width:620px;line-height:1.7}
-    .socials{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
-    footer{padding:28px 0 46px;color:#667388;font:11px DM Mono;text-transform:uppercase;letter-spacing:.08em}
-    .footer-row{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:24px}
-    .reveal{opacity:0;transform:translateY(20px);transition:.7s ease}.reveal.on{opacity:1;transform:none}
-    @media(max-width:900px){
-      .nav-links a:not(.availability){display:none}.hero{grid-template-columns:1fr;gap:30px;min-height:auto;padding-top:50px}.console{transform:none}
-      .feature,.side,.third{grid-column:span 12}.feature{min-height:440px}.skills-grid{grid-template-columns:1fr 1fr}.about-grid{grid-template-columns:1fr}.portrait{min-height:420px}
-      .job{grid-template-columns:130px 1fr 20px}.education{grid-template-columns:1fr}
+
+    #cyber-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
     }
-    @media(max-width:600px){
-      .wrap{width:min(var(--max),calc(100% - 24px))}.nav{padding-top:10px}.nav-inner{border-radius:14px}.availability{font-size:0;padding:9px}.availability .dot{width:8px;height:8px}
-      h1{font-size:54px}.hero{padding:52px 0 72px}.lead{font-size:16px}.console-body{min-height:360px;padding:17px}.section-head{display:block}.section-head p{margin-top:18px}
-      section{padding:68px 0}.card{padding:22px}.feature{min-height:460px}.feature .visual{width:calc(100% - 44px);height:150px;left:22px}
-      .skills-grid{grid-template-columns:1fr}.job{grid-template-columns:1fr 18px;gap:10px}.job-date{grid-column:1}.job > div:nth-child(2){grid-column:1}.job-arrow{grid-column:2;grid-row:1/3}
-      .about-card{padding:26px}.about-card h2{font-size:38px}.facts{grid-template-columns:1fr}.paper{grid-template-columns:36px 1fr}.paper a{display:none}.contact-panel{padding:32px 24px}.footer-row{display:block;line-height:2}
+
+    body > *:not(canvas) {
+      position: relative;
+      z-index: 1;
     }
-    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+    .navbar {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(21, 21, 21, 0.94) !important;
+      border: 1px solid rgba(255,255,255,0.07);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+    }
+
+    .navbar .nav-link {
+      color: #c9c9c9;
+      transition: color .2s ease;
+    }
+
+    .navbar .nav-link:hover {
+      color: #6ea8fe;
+    }
+
+    .container-custom {
+      display: flex;
+      flex-direction: row;
+      max-width: 1200px;
+      margin: auto;
+      padding: 56px 34px;
+      background-color: rgba(30, 30, 30, 0.97);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+    }
+
+    .left-panel {
+      width: 280px;
+      text-align: center;
+      padding-right: 40px;
+      border-right: 1px solid #333;
+    }
+
+    .right-panel {
+      flex: 1;
+      padding-left: 40px;
+    }
+
+    .profile-img {
+      border-radius: 50%;
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border: 2px solid rgba(110,168,254,0.7);
+      box-shadow: 0 0 0 6px rgba(13,110,253,0.08);
+      margin-bottom: 15px;
+    }
+
+    .name-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+
+    .sub-title {
+      color: #bcbcbc;
+      font-size: 0.93rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .right-panel h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    .right-panel p {
+      color: #d1d1d1;
+      line-height: 1.75;
+    }
+
+    .social-icons a {
+      color: #ffffff;
+      font-size: 1.35rem;
+      margin: 0 7px;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .social-icons a:hover {
+      color: #6ea8fe;
+      transform: translateY(-2px);
+    }
+
+    .highlight {
+      display: inline-block;
+      animation: wave 2.5s ease-in-out infinite;
+      transform-origin: 70% 70%;
+    }
+
+    @keyframes wave {
+      0%, 60%, 100% { transform: rotate(0deg); }
+      10% { transform: rotate(12deg); }
+      20% { transform: rotate(-7deg); }
+      30% { transform: rotate(10deg); }
+      40% { transform: rotate(-4deg); }
+      50% { transform: rotate(4deg); }
+    }
+
+    .btn {
+      border-radius: 9px;
+    }
+
+    .resume-section {
+      max-width: 1000px;
+      margin: 78px auto 0;
+    }
+
+    .resume-section h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 38px;
+      text-align: center;
+      border-bottom: 1px solid #444;
+      padding-bottom: 13px;
+    }
+
+    #education .bg-dark {
+      background: rgba(29,33,40,0.96) !important;
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    #education .bg-dark:hover {
+      transform: translateY(-3px);
+      border-color: rgba(13,110,253,0.35);
+    }
+
+    .resume-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 24px 0;
+      border-bottom: 1px solid #333;
+    }
+
+    .resume-entry:last-child {
+      border-bottom: none;
+    }
+
+    .resume-date {
+      color: #9f9f9f;
+      width: 180px;
+      font-size: 0.88rem;
+    }
+
+    .resume-details {
+      flex: 1;
+      padding-left: 30px;
+    }
+
+    .resume-details h5 {
+      font-size: 1.16rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #6ea8fe;
+    }
+
+    .resume-details p {
+      margin-bottom: 8px;
+    }
+
+    .resume-details li {
+      color: #d2d2d2;
+      line-height: 1.65;
+      margin-bottom: 5px;
+    }
+
+    .bottom-section {
+      display: flex;
+      justify-content: space-around;
+      gap: 45px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 78px auto 60px;
+      border-top: 1px solid #444;
+      padding-top: 42px;
+    }
+
+    .bottom-column {
+      flex: 1 1 360px;
+    }
+
+    .bottom-column h5 {
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .bottom-column ul {
+      padding-left: 20px;
+    }
+
+    .bottom-column li {
+      margin-bottom: 8px;
+      color: #d7d7d7;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.88rem;
+      color: #888;
+      padding-top: 38px;
+      border-top: 1px solid #3b3b3b;
+      max-width: 1000px;
+      margin: 60px auto 0;
+    }
+
+    a { color: #fff; }
+
+    a:hover { color: #6ea8fe; }
+
+    @media (max-width: 768px) {
+      body { padding: 14px; }
+
+      .container-custom {
+        flex-direction: column;
+        padding: 30px 20px;
+      }
+
+      .left-panel {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #333;
+        padding: 0 0 25px;
+      }
+
+      .right-panel {
+        padding-left: 0;
+        margin-top: 28px;
+      }
+
+      .resume-entry {
+        flex-direction: column;
+      }
+
+      .resume-date {
+        width: auto;
+        margin-bottom: 10px;
+      }
+
+      .resume-details {
+        padding-left: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .highlight { animation: none; }
+    }
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="#top">AK<span>.</span></a>
-      <div class="nav-links">
-        <a href="#work">Work</a><a href="#experience">Experience</a><a href="#about">About</a><a href="#contact">Contact</a>
-        <span class="availability"><i class="dot"></i> Open to opportunities</span>
-      </div>
+  <canvas id="cyber-bg"></canvas>
+
+  <nav class="navbar navbar-expand-lg navbar-dark px-4 mb-5 rounded">
+    <a class="navbar-brand" href="index.html">
+      <img alt="Abi Kumar Logo" src="logo.png" style="height:32px;"/>
+    </a>
+    <button class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="project.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="design.html">Design</a></li>
+        <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
     </div>
   </nav>
 
-  <main id="top">
-    <div class="wrap hero">
-      <div>
-        <div class="eyebrow">Cybersecurity · Security Engineering · AI · Cloud</div>
-        <h1>I build systems that <span class="gradient">detect, automate & defend.</span></h1>
-        <p class="lead">I'm Abhishek Kumar, a cybersecurity professional based in Australia, working across threat detection, security automation, IoT and cloud infrastructure.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#work">View my work <span>↘</span></a>
-          <a class="btn secondary" href="resume.pdf" target="_blank">Résumé ↗</a>
-        </div>
-        <div class="stack-row">
-          <span class="chip">DELOITTE USI</span><span class="chip">DEAKIN CYBER</span><span class="chip">SPLUNK</span><span class="chip">CROWDSTRIKE</span><span class="chip">PYTHON</span><span class="chip">AZURE</span>
-        </div>
+  <div class="container-custom">
+    <div class="left-panel">
+      <img alt="Abhishek Kumar" class="profile-img" src="profile.jpg"/>
+      <h2 class="name-title">Abhishek Kumar</h2>
+      <p class="sub-title">Cybersecurity Professional</p>
+
+      <div class="social-icons" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px;">
+        <a href="https://www.linkedin.com/in/abi-k-493982182/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/aby1602" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/ttl_dreamer__/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.researchgate.net/profile/Abhishek-Kumar-483?ev=hdr_xprf" target="_blank" rel="noopener" aria-label="ResearchGate"><i class="fas fa-flask"></i></a>
       </div>
-      <aside class="console" aria-label="Security node console">
-        <div class="console-head"><div class="lights"><i></i><i></i><i></i></div><span class="eyebrow">ABI-01 / LIVE NODE</span></div>
-        <div class="console-body">
-          <div class="console-row"><span>STATUS</span><b class="status">ONLINE</b></div>
-          <div class="console-row"><span>LOCATION</span><b>AUSTRALIA</b></div>
-          <div class="console-row"><span>SPECIALITY</span><b>SECURITY ENGINEERING</b></div>
-          <div class="console-row"><span>FOCUS</span><b>DETECTION / AUTOMATION / IOT</b></div>
-          <div class="event-title">EVENT STREAM</div>
-          <div id="event-stream"></div>
-          <div style="margin-top:24px;color:#77869b">&gt; <span class="cursor"></span></div>
-        </div>
-      </aside>
+
+      <div style="margin-top: 20px;">
+        <a class="btn btn-outline-light btn-sm" href="resume.pdf" target="_blank" style="font-size: 0.9rem;">
+          <i class="fas fa-file-arrow-down me-2"></i>View Resume
+        </a>
+      </div>
     </div>
 
-    <section id="work">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <div><div class="section-kicker">01 / Selected work</div><h2>Things I've built.</h2></div>
-          <p>Projects spanning secure systems, research tooling, data products and practical applications. The goal is always the same: solve a real problem cleanly.</p>
-        </div>
-        <div class="bento">
-          <article class="card feature reveal">
-            <div class="card-num">FEATURED / RESEARCH PLATFORM</div>
-            <h3>Secure IoT Research Platform</h3>
-            <p>Built for Deakin Cyber Research to validate theoretical security models in real IoT environments, including Python sensor acquisition, MQTT communications, Flask and interactive dashboards.</p>
-            <div class="card-tags"><span>PYTHON</span><span>MQTT</span><span>FLASK</span><span>PLOTLY</span><span>IOT SECURITY</span></div>
-            <div class="currently"><i></i> Research-grade system development</div>
-            <div class="visual"><span class="visual-line"></span></div>
-          </article>
-          <article class="card side reveal">
-            <div class="card-num">PROJECT / 02</div><h3>Gym Workout Tracker</h3>
-            <p>Responsive workout system for sets, reps, rest timers, calories and weekly progress tracking.</p>
-            <div class="card-tags"><span>WEB APP</span><span>TRACKING</span><span>UX</span></div>
-            <a class="project-link" href="dailyworkout.html" aria-label="Open workout tracker">↗</a>
-          </article>
-          <article class="card side reveal">
-            <div class="card-num">PROJECT / 03</div><h3>Movie Recommendation System</h3>
-            <p>Collaborative filtering engine that recommends films from ratings, genre preferences and similarity scores.</p>
-            <div class="card-tags"><span>ML</span><span>RECOMMENDATION</span><span>DATA</span></div>
-          </article>
-          <article class="card third reveal">
-            <div class="card-num">PROJECT / 04</div><h3>Live COVID Tracker</h3>
-            <p>Real-time public API data, regional comparison and interactive trend visualisation.</p>
-          </article>
-          <article class="card third reveal">
-            <div class="card-num">PROJECT / 05</div><h3>Resource Sharing Platform</h3>
-            <p>Community-driven system connecting people requesting help with people able to provide it.</p>
-          </article>
-          <article class="card third reveal">
-            <div class="card-num">PROJECT / 06</div><h3>Online Medicine Store</h3>
-            <p>Django-based pharmacy concept with authentication, search, prescription upload and payments.</p>
-          </article>
+    <div class="right-panel">
+      <h1 class="mb-4">Hey, I’m Abhishek <span class="highlight">👋</span></h1>
+      <p>I’m a cybersecurity graduate with hands-on experience in SIEM and secure application development. I’m passionate about real-time monitoring, automation, and threat intelligence.</p>
+      <p>Currently exploring opportunities to contribute to industry projects, create impactful tools, and help secure critical systems around the world.</p>
+      <p>Previously worked at Deloitte USI as a SIEM engineer and interned with Deakin Cyber as a developer.</p>
+      <p>I also actively contribute to open source and work on portfolio projects that combine AI, IoT, and secure cloud infrastructure.</p>
+      <p>🧠 ☕ 💻 ✈️ 🎮 🎧</p>
+    </div>
+  </div>
+
+  <section class="resume-section" id="education">
+    <h2 class="mb-4 text-center text-white">Education</h2>
+    <div class="row justify-content-center gy-4">
+      <div class="col-md-6 d-flex">
+        <div class="bg-dark p-4 rounded shadow-sm text-center w-100 d-flex flex-column justify-content-between" style="min-height: 200px;">
+          <div>
+            <h5 class="fw-bold">Masters in Cyber Security</h5>
+            <p class="mb-2">Deakin University, Waurn Ponds VIC<br/><small>Feb 2023 – Feb 2025</small></p>
+          </div>
+          <div><a class="btn btn-outline-primary btn-sm mt-2" href="research.html">View Research</a></div>
         </div>
       </div>
-    </section>
 
-    <section id="experience">
-      <div class="wrap">
-        <div class="section-head reveal"><div><div class="section-kicker">02 / Experience</div><h2>Where I've worked.</h2></div><p>Security operations, research engineering and data work across industry, academia and critical-infrastructure environments.</p></div>
-        <div class="timeline">
-          <article class="job reveal"><div class="job-date">DEC 2023 — NOV 2024</div><div><h3>Deakin Cyber Research</h3><div class="job-role">Developer · Burwood, Australia</div><ul><li>Developed a research platform for real-world IoT validation.</li><li>Built Python sensor acquisition and MQTT real-time communication workflows.</li><li>Created Plotly/Dash and Flask dashboards plus secure authentication interfaces.</li></ul></div><div class="job-arrow">→</div></article>
-          <article class="job reveal"><div class="job-date">JUL 2022 — FEB 2023</div><div><h3>Deloitte USI</h3><div class="job-role">Associate Analyst · Hyderabad, India</div><ul><li>Worked in SOC operations for real-time detection and incident response.</li><li>Used Splunk and CrowdStrike Falcon for log monitoring and anomaly response.</li><li>Contributed to IR playbooks, intelligence correlation and alert-triage automation.</li></ul></div><div class="job-arrow">→</div></article>
-          <article class="job reveal"><div class="job-date">JAN 2022 — MAR 2022</div><div><h3>Defence Research & Development Organisation</h3><div class="job-role">Trainee Intern · New Delhi, India</div><ul><li>Configured network firewalls and managed data in a critical-infrastructure setup.</li><li>Designed and tested Python-based DDoS detection approaches.</li></ul></div><div class="job-arrow">→</div></article>
-          <article class="job reveal"><div class="job-date">MAY 2021 — JUL 2021</div><div><h3>Delhi University</h3><div class="job-role">Research Intern · New Delhi, India</div><ul><li>Cleaned and transformed academic datasets with Pandas and NumPy.</li><li>Visualised research insights and supported predictive-analysis work.</li></ul></div><div class="job-arrow">→</div></article>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap">
-        <div class="section-head reveal"><div><div class="section-kicker">03 / Toolkit</div><h2>My working stack.</h2></div></div>
-        <div class="skills-grid">
-          <div class="skillbox reveal"><h4>Security tools</h4><p>Splunk<br>CrowdStrike Falcon<br>Wireshark<br>JIRA</p></div>
-          <div class="skillbox reveal"><h4>Programming</h4><p>Python<br>SQL<br>C / C++<br>Automation</p></div>
-          <div class="skillbox reveal"><h4>Platforms</h4><p>Microsoft Azure<br>Google Cloud<br>Snowflake<br>IoT / MQTT</p></div>
-          <div class="skillbox reveal"><h4>Security practice</h4><p>SIEM / SOC<br>IAM<br>DevSecOps<br>Threat Intelligence</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="wrap about-grid">
-        <div class="portrait reveal"><img src="profile.jpg" alt="Abhishek Kumar"></div>
-        <div class="about-card reveal">
-          <div class="section-kicker">04 / About Abi</div>
-          <h2>Beyond the terminal.</h2>
-          <p>I’m a cybersecurity graduate who enjoys turning technical ideas into things people can actually use. My work has taken me from SOC monitoring and incident response to IoT research, automation, dashboards and secure application development.</p>
-          <p>I’m especially interested in threat intelligence, cloud infrastructure security and the intersection of AI with practical security engineering. Outside work, I’m usually travelling, listening to music, gaming or building another side project.</p>
-          <div class="facts">
-            <div class="fact">📍 Australia</div><div class="fact">🎓 Deakin University</div><div class="fact">✈ Travel</div><div class="fact">🎧 Music + Gaming</div>
+      <div class="col-md-6 d-flex">
+        <div class="bg-dark p-4 rounded shadow-sm text-center w-100 d-flex flex-column justify-content-between" style="min-height: 200px;">
+          <div>
+            <h5 class="fw-bold">Bachelors in Computer Applications</h5>
+            <p class="mb-2">Indraprastha University, India<br/><small>Aug 2019 – Jul 2022</small></p>
+          </div>
+          <div class="d-flex justify-content-center gap-2 mt-2">
+            <a class="btn btn-outline-primary btn-sm" href="project.html">View Projects</a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="research">
-      <div class="wrap">
-        <div class="section-head reveal"><div><div class="section-kicker">05 / Research</div><h2>Published work.</h2></div><p>Earlier research across computer vision, intelligent transport and digital finance.</p></div>
-        <div class="research-list">
-          <article class="paper reveal"><div class="paper-num">01</div><div><h3>Handwritten Character Recognition using Convolutional Neural Network Technique</h3><p>CNN-based real-time handwritten alphabet recognition and optimisation.</p></div><a href="https://www.researchgate.net/publication/356195148_Handwritten_Character_Recognition_using_Convolutional_Neural_Network_Technique" target="_blank" rel="noopener">↗</a></article>
-          <article class="paper reveal"><div class="paper-num">02</div><div><h3>Descriptive Analysis of Various Smart Road Architectures</h3><p>Comparative review of smart-road infrastructure, V2I communication and intelligent transport.</p></div><a href="https://www.researchgate.net/publication/352761163_DESCRIPTIVE_ANALYSIS_OF_VARIOUS_SMART_ROAD_ARCHITECHURES" target="_blank" rel="noopener">↗</a></article>
-          <article class="paper reveal"><div class="paper-num">03</div><div><h3>Era of E-Commerce: Crypto vs Stock</h3><p>Comparison of volatility, adoption, regulation and trust across crypto and traditional markets.</p></div><a href="https://www.researchgate.net/publication/343471751_Era_of_E-Commerce_Crypto_vs_Stock" target="_blank" rel="noopener">↗</a></article>
-        </div>
+  <div class="resume-section">
+    <h2 class="mt-5">Experience</h2>
+
+    <div class="resume-entry">
+      <div class="resume-date">Dec 2023 – Nov 2024</div>
+      <div class="resume-details">
+        <h5>Developer, Deakin Cyber Research</h5>
+        <p><strong>Burwood, Australia</strong></p>
+        <ul>
+          <li>Developed a research platform to validate theoretical models in real-world IoT environments.</li>
+          <li>Programmed Python scripts for sensor data acquisition via custom-built IoT gateways.</li>
+          <li>Integrated MQTT for real-time communication and built dashboards using Plotly/Dash and Flask.</li>
+          <li>Helped create secure interfaces to support authentication research in heterogeneous IoT devices.</li>
+        </ul>
       </div>
-    </section>
+    </div>
 
-    <section id="education">
-      <div class="wrap">
-        <div class="section-head reveal"><div><div class="section-kicker">06 / Education</div><h2>Academic foundation.</h2></div></div>
-        <div class="education">
-          <div class="edu reveal"><small>2023 — 2025</small><h3>Master of Cyber Security</h3><p>Deakin University · Waurn Ponds, Victoria</p></div>
-          <div class="edu reveal"><small>2019 — 2022</small><h3>Bachelor of Computer Applications</h3><p>Indraprastha University · India</p></div>
-        </div>
+    <div class="resume-entry">
+      <div class="resume-date">Jul 2022 – Feb 2023</div>
+      <div class="resume-details">
+        <h5>Associate Analyst, Deloitte USI</h5>
+        <p><strong>Hyderabad, India</strong></p>
+        <ul>
+          <li>Worked in the SOC team for real-time threat detection and incident response.</li>
+          <li>Used Splunk and CrowdStrike Falcon to monitor logs and respond to anomalies.</li>
+          <li>Performed threat intelligence correlation to reduce MTTD and MTTR.</li>
+          <li>Contributed to IR playbooks and automated alert triaging processes.</li>
+        </ul>
       </div>
-    </section>
+    </div>
 
-    <section class="contact" id="contact">
-      <div class="wrap">
-        <div class="contact-panel reveal">
-          <div class="section-kicker">07 / Contact</div>
-          <h2>Let's build something secure.</h2>
-          <p>Have an opportunity, security project, research idea or interesting problem? Reach out — I’m always open to useful conversations and ambitious work.</p>
-          <div class="hero-actions">
-            <a class="btn primary" href="mailto:abhideakin@gmail.com">Email me ↗</a>
-            <a class="btn secondary" href="resume.pdf" target="_blank">View résumé ↗</a>
-          </div>
-          <div class="socials">
-            <a class="chip" href="https://www.linkedin.com/in/abi-k-493982182/" target="_blank" rel="noopener">LINKEDIN ↗</a>
-            <a class="chip" href="https://github.com/aby1602" target="_blank" rel="noopener">GITHUB ↗</a>
-            <a class="chip" href="https://www.researchgate.net/profile/Abhishek-Kumar-483?ev=hdr_xprf" target="_blank" rel="noopener">RESEARCHGATE ↗</a>
-            <a class="chip" href="https://www.instagram.com/ttl_dreamer__/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
-          </div>
-        </div>
+    <div class="resume-entry">
+      <div class="resume-date">Jan 2022 – Mar 2022</div>
+      <div class="resume-details">
+        <h5>Trainee Intern, Defence Research and Development Org (DRDO)</h5>
+        <p><strong>New Delhi, India</strong></p>
+        <ul>
+          <li>Configured network firewalls and managed data in a critical infrastructure setup.</li>
+          <li>Designed and tested DDoS detection algorithms using Python pattern recognition.</li>
+        </ul>
       </div>
-    </section>
-  </main>
+    </div>
 
-  <footer><div class="wrap footer-row"><span>© 2026 Abhishek Kumar</span><span>Designed & built for personal use · Australia</span></div></footer>
+    <div class="resume-entry">
+      <div class="resume-date">May 2021 – Jul 2021</div>
+      <div class="resume-details">
+        <h5>Research Intern, Delhi University</h5>
+        <p><strong>New Delhi, India</strong></p>
+        <ul>
+          <li>Cleaned and transformed academic datasets using Pandas and NumPy in Google Colab.</li>
+          <li>Visualized insights using Matplotlib and Seaborn for research publication support.</li>
+          <li>Helped identify student performance patterns for predictive analytics models.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
+  <div class="bottom-section">
+    <div class="bottom-column">
+      <h5 style="color: #6ea8fe;">Skills</h5>
+      <ul style="list-style: none; padding-left: 0; font-size: 1rem; line-height: 1.8;">
+        <li><i class="fas fa-tools me-2 text-info"></i><strong>Tools:</strong> Splunk, CrowdStrike, Wireshark, JIRA</li>
+        <li><i class="fas fa-code me-2 text-warning"></i><strong>Programming:</strong> Python, SQL, C/C++</li>
+        <li><i class="fas fa-cloud me-2 text-primary"></i><strong>Platforms:</strong> Azure, GCP, Snowflake</li>
+        <li><i class="fas fa-shield-alt me-2 text-success"></i><strong>Practices:</strong> IAM, DevSecOps</li>
+      </ul>
+    </div>
+
+    <div class="bottom-column">
+      <h5 style="color: #6ea8fe;">Interests</h5>
+      <ul style="list-style: none; padding-left: 0; font-size: 1rem; line-height: 1.8;">
+        <li><i class="fas fa-eye text-info me-2"></i>Cyber Threat Intelligence</li>
+        <li><i class="fas fa-cloud me-2" style="color: #87CEEB;"></i>Cloud Infrastructure Security</li>
+        <li><i class="fas fa-robot text-success me-2"></i>Automation &amp; AI</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>Copyright © 2026, Abhishek Kumar</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    const events=[
-      "AUTH_SUCCESS / identity verified",
-      "MQTT_PACKET_RECEIVED / gateway-03",
-      "THREAT_SCAN_COMPLETE / no anomalies",
-      "SIEM_RULE_SYNC / complete",
-      "CLOUD_POLICY_CHECK / passed",
-      "SYSTEM_SECURE / monitoring"
-    ];
-    const stream=document.getElementById("event-stream");
-    let n=0;
-    function addEvent(){
-      if(!stream)return;
-      const row=document.createElement("div");
-      const now=new Date().toLocaleTimeString("en-AU",{hour12:false});
-      row.innerHTML='<span class="event-time">'+now+'</span>&nbsp;&nbsp; <span class="event-ok">'+events[n%events.length]+'</span>';
-      stream.appendChild(row);
-      if(stream.children.length>6)stream.removeChild(stream.firstChild);
-      n++;
-    }
-    events.slice(0,4).forEach((_,i)=>setTimeout(addEvent,220*i));
-    setInterval(addEvent,2600);
-    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("on")}),{threshold:.08});
-    document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+    const App = {
+      mouse: { x: 0, y: 0 },
+      proximityRadius: 60,
+      particles: [],
+      grid: [],
+      gridSize: 40,
+
+      setup() {
+        const canvas = document.getElementById("cyber-bg");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        this.canvas = canvas;
+        this.ctx = canvas.getContext("2d");
+        this.width = canvas.width;
+        this.height = canvas.height;
+        this.xC = this.width / 2;
+        this.yC = this.height / 2;
+
+        for (let x = -600; x <= 600; x += this.gridSize) {
+          for (let y = -400; y <= 400; y += this.gridSize) {
+            this.grid.push({ x, y });
+          }
+        }
+
+        window.addEventListener("resize", () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          this.width = canvas.width;
+          this.height = canvas.height;
+          this.xC = this.width / 2;
+          this.yC = this.height / 2;
+        });
+
+        window.addEventListener("mousemove", (e) => {
+          this.mouse.x = e.clientX - this.xC;
+          this.mouse.y = e.clientY - this.yC;
+        });
+
+        const loop = () => {
+          this.triggerMouseConnections();
+          this.triggerRandomConnections();
+          this.move();
+          this.draw();
+          requestAnimationFrame(loop);
+        };
+
+        loop();
+      },
+
+      triggerMouseConnections() {
+        this.grid.forEach(node => {
+          const dx = node.x - this.mouse.x;
+          const dy = node.y - this.mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < this.proximityRadius && Math.random() < 0.25) {
+            this.spawnParticle(node);
+          }
+        });
+      },
+
+      triggerRandomConnections() {
+        if (Math.random() < 0.22) {
+          const node = this.grid[Math.floor(Math.random() * this.grid.length)];
+          this.spawnParticle(node);
+        }
+      },
+
+      spawnParticle(node) {
+        const directions = [
+          { dx: 1, dy: 0 },
+          { dx: -1, dy: 0 },
+          { dx: 0, dy: 1 },
+          { dx: 0, dy: -1 }
+        ];
+
+        const dir = directions[Math.floor(Math.random() * directions.length)];
+
+        this.particles.push({
+          x: node.x,
+          y: node.y,
+          xLast: node.x,
+          yLast: node.y,
+          dx: dir.dx * this.gridSize / 20,
+          dy: dir.dy * this.gridSize / 20,
+          life: 0,
+          hue: 210
+        });
+      },
+
+      move() {
+        this.particles.forEach((p, i) => {
+          p.xLast = p.x;
+          p.yLast = p.y;
+          p.x += p.dx;
+          p.y += p.dy;
+          p.life++;
+          if (p.life > 60) this.particles.splice(i, 1);
+        });
+      },
+
+      draw() {
+        this.ctx.fillStyle = "rgba(0,0,0,0.10)";
+        this.ctx.fillRect(0, 0, this.width, this.height);
+
+        this.particles.forEach(p => {
+          const last = this.toCanvas(p.xLast, p.yLast);
+          const now = this.toCanvas(p.x, p.y);
+          this.ctx.beginPath();
+          this.ctx.moveTo(last.x, last.y);
+          this.ctx.lineTo(now.x, now.y);
+          this.ctx.strokeStyle = `hsla(${p.hue}, 100%, 60%, 0.55)`;
+          this.ctx.lineWidth = 1.2;
+          this.ctx.stroke();
+        });
+      },
+
+      toCanvas(x, y) {
+        return { x: this.xC + x, y: this.yC + y };
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", () => App.setup());
   </script>
 </body>
 </html>
