@@ -3,270 +3,139 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f5f8f5">
-<meta name="description" content="Simple daily public review ratings tracker for Grill'd South Geelong.">
-<title>South Geelong · Review Dashboard</title>
+<meta name="theme-color" content="#f4f8f5">
+<meta name="description" content="Automatically updated daily review ratings for Grill'd South Geelong.">
+<title>South Geelong · Daily Review Dashboard</title>
 <style>
-:root{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#15251e;background:#f5f8f5;font-synthesis:none}
-*{box-sizing:border-box}body{margin:0}
-main{max-width:1120px;margin:0 auto;padding:38px 24px 70px}
-header{display:flex;gap:15px;align-items:center;justify-content:space-between;margin-bottom:33px}
-.logo{height:38px;width:38px;border-radius:12px;background:#145c47;color:white;font-size:23px;font-weight:800;display:grid;place-items:center}
-.brand{display:flex;align-items:center;gap:11px}
-.brand strong{display:block;font-size:16px;letter-spacing:-.4px}.brand small{display:block;font-size:10px;color:#71817a;margin-top:3px;letter-spacing:.08em}
-a{color:#12664d}
-.button{background:#16634b;color:#fff!important;border:0;border-radius:10px;padding:12px 16px;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;gap:8px;align-items:center}
-.button:hover{background:#0e4f3b}
-.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin:28px 0}
-.eyebrow{font-size:11px;letter-spacing:.16em;font-weight:800;color:#56816f}
-h1{font-size:clamp(29px,4vw,45px);line-height:1.1;letter-spacing:-.055em;margin:7px 0 10px}
-p{color:#677870;font-size:13px;line-height:1.6;margin:0}
-.update-date{white-space:nowrap;text-align:right;font-size:11px;color:#74857b;margin-bottom:4px}
-.card-grid{display:grid;grid-template-columns:1.35fr repeat(3,1fr);gap:13px;margin:25px 0}
-.card{background:#fff;border:1px solid #e1e9e2;border-radius:16px;padding:23px;box-shadow:0 5px 20px #173c2410}
-.card strong{display:block;font-size:35px;letter-spacing:-.06em;line-height:1.18;margin-top:17px}
-.card strong small{font-size:16px;font-weight:500;color:#a0aba2}
-.card .kicker{color:#76877c;font-size:11px;font-weight:750;letter-spacing:.05em}
-.card>p{margin-top:9px;font-size:11px}
-.score-card{background:#175a44;color:white;border-color:#175a44}
-.score-card .kicker,.score-card p{color:#c1ded0}
-.score-card strong{font-size:50px}
-.score-card strong small{color:#b3dbbe}
-.section{margin-top:28px;background:#fff;border:1px solid #e1e9e2;border-radius:17px;padding:25px;box-shadow:0 5px 20px #173c2410}
-.section h2{font-size:19px;letter-spacing:-.035em;margin:0 0 6px}
-.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:15px}
-.legend{display:flex;flex-wrap:wrap;gap:16px;margin:13px 0 3px}
-.legend span{display:flex;align-items:center;gap:7px;font-size:11px;color:#64756c}
-.dot{height:8px;width:8px;border-radius:50%;display:inline-block}
-svg{display:block;width:100%;height:auto;max-height:380px;margin-top:14px}
-.chart-note{font-size:11px;color:#7b8b83}
+:root{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#183226;background:#f5f8f5;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}main{max-width:1120px;margin:0 auto;padding:36px 24px 70px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:38px}
+.brand{display:flex;align-items:center;gap:11px}.brand-icon{width:38px;height:38px;background:#175b46;border-radius:11px;display:grid;place-items:center;color:white;font-size:23px;font-weight:900}
+.brand strong{display:block;font-size:15px;letter-spacing:-.03em}.brand small{display:block;font-size:10px;letter-spacing:.09em;color:#76867a;margin-top:3px}
+.auto-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #d0e7d8;color:#21714f;background:#e5f5e9;border-radius:999px;padding:9px 13px;font-size:11px;font-weight:800;white-space:nowrap}
+.auto-pill b{height:7px;width:7px;border-radius:50%;background:#278e5e;display:inline-block}
+h1,h2,p{margin:0}.eyebrow{font-size:11px;font-weight:800;color:#54846b;letter-spacing:.13em;margin-bottom:7px}
+h1{font-size:clamp(30px,4.1vw,48px);line-height:1.14;letter-spacing:-.055em}
+.subtitle{font-size:13px;color:#6e8073;margin-top:12px;line-height:1.6}
+.headline{display:flex;align-items:flex-end;justify-content:space-between;gap:15px}
+.update-date{text-align:right;white-space:nowrap;color:#78887c;font-size:11px;line-height:1.7}
+.card-grid{display:grid;grid-template-columns:1.35fr repeat(3,1fr);gap:13px;margin:28px 0 0}
+.card{padding:23px;border:1px solid #e1eae1;border-radius:16px;background:white;box-shadow:0 6px 24px #163b2110}
+.card .kicker{font-size:10px;color:#78887e;font-weight:800;letter-spacing:.065em}
+.card strong{display:block;font-size:36px;line-height:1.15;letter-spacing:-.06em;margin-top:16px}
+.card strong small{font-size:15px;color:#9aaa9f;font-weight:500;margin-left:2px}
+.card p{font-size:11px;color:#87958a;margin-top:11px}
+.score-card{background:#175b45;border-color:#175b45;color:white}
+.score-card .kicker,.score-card p{color:#c8e2d1}
+.score-card strong{font-size:48px}.score-card strong small{color:#bbdac9}
+.section{background:#fff;border:1px solid #e1eae1;border-radius:16px;padding:24px;margin-top:22px;box-shadow:0 6px 24px #163b2110}
+.section h2{font-size:19px;letter-spacing:-.045em}.section p{font-size:12px;color:#718276;margin-top:5px}
+.section-heading{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:22px 0 0}
+.legend>span{display:flex;align-items:center;gap:7px;color:#667a6b;font-size:11px}.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.chart{display:block;width:100%;height:auto;max-height:365px;margin-top:12px}
+#chartNote{font-size:11px;margin-top:8px}
+.table-wrap{border:1px solid #e5ece6;border-radius:11px;overflow-x:auto;margin-top:18px}
 table{border-collapse:collapse;width:100%;text-align:left;font-size:12px}
-thead th{color:#7d8c83;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:13px 12px;background:#f6f9f6}
-tbody td{border-top:1px solid #edf1ed;padding:12px;color:#516359}
-tbody td:first-child{font-weight:700;color:#243b30}
-tbody td:last-child{font-weight:800;color:#12614a}
-.scroller{overflow-x:auto;border:1px solid #e5ebe5;border-radius:11px;margin-top:14px}
-th,td{min-width:120px}
-footer{font-size:11px;color:#74847a;margin-top:21px;display:flex;justify-content:space-between;gap:20px}
-footer p{font-size:11px}footer a{font-weight:650;text-decoration:none}
-.error{padding:25px;background:#fff3ee;color:#943e22;border:1px solid #e7c2b1;border-radius:12px}
-@media(max-width:850px){.card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{display:block}.update-date{text-align:left;margin-top:13px}}
-@media(max-width:530px){main{padding:22px 14px 45px}.card-grid{gap:9px}.card{padding:18px}.card strong{font-size:30px}.score-card strong{font-size:41px}.card .kicker{font-size:10px}.section{padding:17px}.section-head{display:block}.button{font-size:11px;padding:10px 12px}header{margin-bottom:25px}footer{display:block}footer p{margin-bottom:9px}}
-
-/* Enter a rating right on the site */
-.entry-section{background:linear-gradient(120deg,#e8f5ed,#f6fbf7);border-color:#d6e7d9}
-.entry-head{display:flex;justify-content:space-between;align-items:start;gap:20px;margin-bottom:18px}
-.local-pill{font-size:11px;font-weight:750;color:#32614c;background:#d9ecdf;border-radius:22px;padding:6px 12px;white-space:nowrap}
-.rating-form{display:grid;grid-template-columns:1.24fr repeat(3,1fr) auto;align-items:end;gap:12px}
-.rating-form label{display:block;font-size:11px;color:#435d4d;font-weight:750}
-.rating-form input{display:block;width:100%;height:44px;border:1px solid #c6d8ca;background:#fff;border-radius:9px;padding:0 11px;color:#153829;font-size:15px;margin-top:5px;min-width:0}
-.rating-form input:focus{outline:2px solid #8bc8a2;outline-offset:1px}
-.rating-form button{height:44px;white-space:nowrap;justify-content:center;cursor:pointer;font:700 13px inherit}
-.entry-message{color:#2c6246;font-size:12px;min-height:18px;margin-top:12px}
-.entry-actions{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:center;margin-top:13px}
-.entry-actions p{font-size:11px;max-width:650px}
-.secondary-button{border:1px solid #cddbd0;color:#22634b;background:#fff;border-radius:8px;padding:9px 11px;font-size:11px;font-weight:750;cursor:pointer}
-.history-actions{display:flex;gap:7px}
-.history-actions button{background:#eaf5ed;color:#17624a;border:0;border-radius:7px;padding:6px 9px;font-size:11px;cursor:pointer}
-.history-actions button.delete{background:#fff0ed;color:#a2493f}
-.status-note{background:#fff3e3;color:#7c5628;border:1px solid #eacb94;border-radius:9px;padding:10px 13px;margin-bottom:15px;font-size:12px}
-@media(max-width:850px){.rating-form{grid-template-columns:repeat(2,minmax(0,1fr))}.rating-form button{grid-column:1/-1}}
-@media(max-width:540px){.entry-head{display:block}.local-pill{display:inline-block;margin-top:11px}.rating-form{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.rating-form label{font-size:10px}.entry-actions{display:block}.entry-actions .secondary-button{margin-top:10px}.history-actions{flex-wrap:wrap}th,td{min-width:105px}}
-
+th{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#708378;background:#f5f8f5;padding:13px 12px}
+td{border-top:1px solid #edf2ed;padding:12px;color:#4b6253}
+td:first-child{font-weight:700;color:#1f3b2d}td:last-child{font-weight:800;color:#12684b}
+.message{border-radius:12px;padding:15px;margin-top:19px;color:#8e4a34;background:#fff4ec;border:1px solid #eccfbf;font-size:12px}
+footer{display:flex;justify-content:space-between;gap:18px;margin-top:22px;color:#798b7f;font-size:11px}
+footer a{color:#246e4c;font-weight:700;text-decoration:none}
+button.refresh{cursor:pointer;border:1px solid #dbe8de;background:#fff;color:#28684b;padding:9px 13px;border-radius:9px;font-size:11px;font-weight:800}
+button.refresh:hover{background:#eaf5ec}
+@media(max-width:850px){.card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.headline{display:block}.update-date{text-align:left;margin-top:13px}}
+@media(max-width:540px){main{padding:23px 14px 42px}header{margin-bottom:28px}.auto-pill{font-size:10px;padding:8px 9px}.card-grid{gap:9px}.card{padding:17px}.card strong{font-size:31px}.score-card strong{font-size:42px}.card .kicker{font-size:10px}.section{padding:17px}.section-heading{align-items:flex-start}.legend{gap:9px}.chart{min-height:185px}footer{display:block}footer p{margin-bottom:10px}th,td{min-width:110px}}
 </style>
 </head>
 <body>
 <main>
 <header>
- <div class="brand"><span class="logo">G</span><span><strong>South Geelong Reviews</strong><small>PERSONAL RATING TRACKER</small></span></div>
- <a class="button" href="#update">＋ Add daily rating</a>
+  <div class="brand"><div class="brand-icon">G</div><div><strong>South Geelong Reviews</strong><small>DAILY REVIEW TRACKER</small></div></div>
+  <span class="auto-pill"><b></b> DAILY AUTO CHECK · 8 AM</span>
 </header>
-<div class="hero">
- <div><div class="eyebrow">GRILL'D SOUTH GEELONG</div><h1>Review dashboard</h1><p>Enter the ratings here each day. Your score and graph update instantly.</p></div>
- <div class="update-date" id="lastDate">Loading saved ratings…</div>
+<div class="headline">
+  <div><div class="eyebrow">GRILL'D SOUTH GEELONG</div><h1>Review dashboard</h1><p class="subtitle">Google · Uber Eats · DoorDash. No manual rating entry required.</p></div>
+  <div class="update-date" id="lastDate">Loading review history...</div>
 </div>
-<div id="error" hidden></div>
-<section class="section entry-section" id="update">
- <div class="entry-head"><div><h2>Update today's ratings</h2><p>Enter the public rating on each platform, then press Save. You can edit past days below.</p></div><span class="local-pill">✓ Saves in this browser</span></div>
- <form id="ratingForm" class="rating-form">
-  <label>Date<input id="inputDate" name="date" type="date" required></label>
-  <label>Google / 5<input id="inputGoogle" name="google" type="number" min="0" max="5" step="0.1" placeholder="4.0" required></label>
-  <label>Uber Eats / 5<input id="inputUber" name="uber" type="number" min="0" max="5" step="0.1" placeholder="3.9" required></label>
-  <label>DoorDash / 5<input id="inputDash" name="dash" type="number" min="0" max="5" step="0.1" placeholder="4.6" required></label>
-  <button class="button" type="submit">Save rating</button>
- </form>
- <div class="entry-message" id="formMessage" role="status" aria-live="polite"></div>
- <div class="entry-actions"><p><strong>Note:</strong> Saved entries stay in this browser only, not on the public GitHub site or other devices. Export a backup if needed.</p><button id="exportCsv" type="button" class="secondary-button">↓ Export my ratings</button></div>
-</section>
-
+<div id="error" class="message" hidden></div>
 <div id="dashboard" hidden>
- <div class="card-grid">
-   <article class="card score-card"><div class="kicker">OVERALL DAILY SCORE</div><strong id="score">—</strong><p>Custom rating index · out of 100</p></article>
-   <article class="card"><div class="kicker">GOOGLE</div><strong id="google">—</strong><p>Out of 5 stars</p></article>
-   <article class="card"><div class="kicker">UBER EATS</div><strong id="uber">—</strong><p>Out of 5 stars</p></article>
-   <article class="card"><div class="kicker">DOORDASH</div><strong id="dash">—</strong><p>Out of 5 stars</p></article>
- </div>
- <section class="section">
-   <div class="section-head"><div><h2>Daily rating trend</h2><p>Your rating history, based only on dates entered in the sheet.</p></div></div>
-   <div class="legend"><span><i class="dot" style="background:#12634a"></i>Overall score</span><span><i class="dot" style="background:#3996bd"></i>Google</span><span><i class="dot" style="background:#9666bd"></i>Uber Eats</span><span><i class="dot" style="background:#e6a044"></i>DoorDash</span></div>
-   <svg id="trend" viewBox="0 0 900 300" role="img" aria-label="Daily score trend"></svg>
-   <p id="chartNote" class="chart-note"></p>
- </section>
- <section class="section">
-   <div class="section-head"><div><h2>Daily history</h2><p>Ratings you have entered or edited on this website.</p></div><span style="font-size:11px;color:#7d8c83">Edit or delete a day below</span></div>
-   <div class="scroller"><table><thead><tr><th>Date</th><th>Google /5</th><th>Uber Eats /5</th><th>DoorDash /5</th><th>Score /100</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div>
- </section>
+  <div class="card-grid">
+    <article class="card score-card"><span class="kicker">CUSTOMER PULSE SCORE</span><strong id="score">—</strong><p>Unofficial weighted review rating / 100</p></article>
+    <article class="card"><span class="kicker">GOOGLE</span><strong id="google">—</strong><p>Public rating / 5</p></article>
+    <article class="card"><span class="kicker">UBER EATS</span><strong id="uber">—</strong><p>Public rating / 5</p></article>
+    <article class="card"><span class="kicker">DOORDASH</span><strong id="dash">—</strong><p>Public rating / 5</p></article>
+  </div>
+  <section class="section">
+    <div class="section-heading"><div><h2>Daily rating trend</h2><p>Only recorded ratings appear; dates without a verified update are skipped.</p></div><button type="button" id="refresh" class="refresh">↻ Refresh</button></div>
+    <div class="legend"><span><i class="dot" style="background:#166748"></i>Customer score</span><span><i class="dot" style="background:#318db8"></i>Google</span><span><i class="dot" style="background:#9963bf"></i>Uber Eats</span><span><i class="dot" style="background:#e6a044"></i>DoorDash</span></div>
+    <svg id="trend" class="chart" viewBox="0 0 900 300" role="img" aria-label="Daily customer rating trend"></svg>
+    <p id="chartNote"></p>
+  </section>
+  <section class="section">
+    <div><h2>Rating history</h2><p>Daily published rating snapshots from the automatic monitor.</p></div>
+    <div class="table-wrap"><table><thead><tr><th>Date</th><th>Google</th><th>Uber Eats</th><th>DoorDash</th><th>Score /100</th></tr></thead><tbody id="rows"></tbody></table></div>
+  </section>
 </div>
-<footer><p>Score = 50% Google + 30% Uber Eats + 20% DoorDash, converted to /100. Unofficial, not a Grill'd company KPI.</p><span>Stored on your current device · not shared across browsers</span></footer>
+<footer><p>Score = 50% Google + 30% Uber Eats + 20% DoorDash. Not an official Grill'd KPI. Public listings can be incomplete.</p><a href="https://github.com/aby1602/Portfolio/blob/main/arm-e-space/ratings.csv" target="_blank" rel="noopener noreferrer">Source &amp; last published values ↗</a></footer>
 </main>
 <script>
-
-(function () {
 "use strict";
-const $ = (id) => document.getElementById(id);
-const SOURCE = "./ratings.csv";
-const KEY = "south-geelong-review-editor-v1";
-let baseline = [], edits = { entries: {}, hidden: [] }, current = [];
-const round = Math.round;
-function score(r) { return round((r.google * .5 + r.uber * .3 + r.dash * .2) * 20); }
-function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c])); }
-function localToday(){
-  const p = new Intl.DateTimeFormat("en-GB", {timeZone:"Australia/Melbourne", year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
-  const v = t => p.find(x=>x.type===t).value;
-  return v("year")+"-"+v("month")+"-"+v("day");
-}
-function fmt(d) {
-  const t = new Date(d+"T12:00:00+11:00");
+(function () {
+const $=id=>document.getElementById(id);
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function fmt(d){
+  const t=new Date(d+"T12:00:00+11:00");
   return Number.isNaN(t.getTime())?d:new Intl.DateTimeFormat("en-AU",{day:"numeric",month:"short",year:"numeric",timeZone:"Australia/Melbourne"}).format(t);
 }
-function clean(r) {
-  if (!r || typeof r !== "object" || !/^\d{4}-\d{2}-\d{2}$/.test(String(r.date))) return null;
-  const vals = ["google","uber","dash"].map(k=>Number(r[k]));
-  if (["google","uber","dash"].some(k=>r[k] === "" || r[k] == null) || vals.some(v=>!Number.isFinite(v)||v<0||v>5)) return null;
-  return {date:r.date, google:vals[0],uber:vals[1],dash:vals[2]};
-}
+function pulse(r){return Math.round((r.google*.5+r.uber*.3+r.dash*.2)*20);}
 function parse(csv){
-  const lines=csv.trim().split(/\r?\n/);
-  if ((lines.shift()||"").toLowerCase().replace(/\s+/g,"")!=="date,google,uber_eats,doordash") throw new Error("Source CSV headings are invalid.");
-  const map=new Map();
-  lines.forEach(line=>{
-    const c=line.split(",").map(x=>x.trim());
-    const r=c.length===4?clean({date:c[0],google:c[1],uber:c[2],dash:c[3]}):null;
-    if (r) map.set(r.date,r);
+  const rows=csv.trim().split(/\r?\n/), records=new Map();
+  const header=(rows.shift()||"").toLowerCase().replace(/\s/g,"");
+  if(header!=="date,google,uber_eats,doordash")throw new Error("Published ratings format unavailable.");
+  rows.forEach(line=>{
+    const v=line.split(",").map(s=>s.trim());
+    if(v.length!==4||!/^\d{4}-\d{2}-\d{2}$/.test(v[0])||v.slice(1).some(s=>!s))return;
+    const nums=v.slice(1).map(Number);
+    if(nums.some(n=>!Number.isFinite(n)||n<0||n>5))return;
+    records.set(v[0],{date:v[0],google:nums[0],uber:nums[1],dash:nums[2]});
   });
-  return [...map.values()];
+  return [...records.values()].sort((a,b)=>a.date.localeCompare(b.date));
 }
-function loadEdits() {
-  try {
-    const raw=JSON.parse(localStorage.getItem(KEY)||"null");
-    if (raw && typeof raw.entries==="object" && !Array.isArray(raw.entries)) {
-      const entries = {};
-      Object.entries(raw.entries).forEach(([date, r])=>{const valid=clean(r);if(valid&&date===valid.date)entries[date]=valid;});
-      edits={entries,hidden:Array.isArray(raw.hidden)?raw.hidden.filter(v=>/^\d{4}-\d{2}-\d{2}$/.test(v)):[]};
-    }
-  } catch (_) { /* browser storage unavailable */ }
-}
-function persist(){
-  try {
-    localStorage.setItem(KEY,JSON.stringify(edits));
-    return true;
-  } catch (_) { return false; }
-}
-function combined(){
-  const map=new Map(baseline.map(r=>[r.date,r]));
-  Object.values(edits.entries).forEach(r=>map.set(r.date,r));
-  edits.hidden.forEach(date=>map.delete(date));
-  return [...map.values()].sort((a,b)=>a.date.localeCompare(b.date));
-}
-function setStatus(message, issue=false) {
-  $("formMessage").textContent=message;
-  $("formMessage").style.color=issue?"#aa4334":"#2c6246";
-}
-function fillForm(date){
-  $("inputDate").value=date;
-  const r=current.find(x=>x.date===date);
-  $("inputGoogle").value=r?r.google:"";
-  $("inputUber").value=r?r.uber:"";
-  $("inputDash").value=r?r.dash:"";
-}
-function graph(entries){
-  const svg=$("trend");
-  if(!entries.length){svg.innerHTML="";$("chartNote").textContent="Enter your first rating above to begin the chart.";return;}
-  const W=900,H=300,L=45,R=21,T=22,B=42,w=W-L-R,h=H-T-B,all=entries.slice(-45);
-  const vals=all.flatMap(r=>[score(r),r.google*20,r.uber*20,r.dash*20]);
-  const min=Math.max(0,Math.floor((Math.min(...vals)-8)/10)*10),max=Math.min(100,Math.ceil((Math.max(...vals)+8)/10)*10);
-  const lo=min===max?Math.max(0,min-10):min,hi=min===max?Math.min(100,max+10):max;
-  const x=i=>L+(all.length===1?w/2:i*w/(all.length-1)),y=v=>T+(hi-v)/(hi-lo)*h;
+function graph(data){
+  const svg=$("trend"),all=data.slice(-45),W=900,H=300,L=45,R=21,T=22,B=42,w=W-L-R,h=H-T-B;
+  const vals=all.flatMap(r=>[pulse(r),r.google*20,r.uber*20,r.dash*20]);
+  let min=Math.max(0,Math.floor((Math.min(...vals)-8)/10)*10),max=Math.min(100,Math.ceil((Math.max(...vals)+8)/10)*10);
+  if(min===max){min=Math.max(0,min-10);max=Math.min(100,max+10);}
+  const x=i=>L+(all.length===1?w/2:i*w/(all.length-1)),y=v=>T+(max-v)/(max-min)*h;
   let markup="";
-  for(let i=0;i<=4;i++){const n=lo+(hi-lo)*i/4,py=y(n);markup+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+py+'" y2="'+py+'" stroke="#e7eee8" stroke-dasharray="4 5"/><text x="'+(L-9)+'" y="'+(py+4)+'" text-anchor="end" fill="#839288" font-size="11">'+Math.round(n)+'</text>';}
-  [["dash","#e6a044",r=>r.dash*20],["uber","#9666bd",r=>r.uber*20],["google","#3996bd",r=>r.google*20],["score","#12634a",r=>score(r)]].forEach(s=>{
-    if(all.length>1)markup+='<path d="'+all.map((r,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+y(s[2](r)).toFixed(1)).join(" ")+'" fill="none" stroke="'+s[1]+'" stroke-width="'+(s[0]==="score"?3:2)+'" stroke-linecap="round" stroke-linejoin="round"/>';
-    all.forEach((r,i)=>{markup+='<circle cx="'+x(i)+'" cy="'+y(s[2](r))+'" r="'+(s[0]==="score"?5:3.5)+'" fill="'+s[1]+'" stroke="#fff" stroke-width="1.8"><title>'+esc(fmt(r.date)+" · "+s[0]+": "+Math.round(s[2](r))+"/100")+'</title></circle>';});
+  for(let i=0;i<=4;i++){const n=min+(max-min)*i/4,py=y(n);markup+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+py+'" y2="'+py+'" stroke="#e7eee8" stroke-dasharray="4 5"/><text x="'+(L-9)+'" y="'+(py+4)+'" text-anchor="end" fill="#85968a" font-size="11">'+Math.round(n)+'</text>';}
+  [["dash","#e6a044",r=>r.dash*20],["uber","#9963bf",r=>r.uber*20],["google","#318db8",r=>r.google*20],["score","#166748",r=>pulse(r)]].forEach(s=>{
+    if(all.length>1)markup+='<path d="'+all.map((r,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+y(s[2](r)).toFixed(1)).join(" ")+'" stroke="'+s[1]+'" fill="none" stroke-width="'+(s[0]==="score"?3:2)+'" stroke-linecap="round" stroke-linejoin="round"/>';
+    all.forEach((r,i)=>markup+='<circle cx="'+x(i)+'" cy="'+y(s[2](r))+'" r="'+(s[0]==="score"?5:3.5)+'" fill="'+s[1]+'" stroke="#fff" stroke-width="1.8"><title>'+safe(fmt(r.date)+" · "+s[0]+": "+Math.round(s[2](r))+"/100")+'</title></circle>');
   });
-  all.forEach((r,i)=>{if(all.length<=9||i%Math.ceil(all.length/8)===0||i===all.length-1)markup+='<text x="'+x(i)+'" y="'+(H-12)+'" text-anchor="middle" fill="#829185" font-size="11">'+esc(r.date.slice(5))+'</text>';});
+  all.forEach((r,i)=>{if(all.length<=9||i%Math.ceil(all.length/8)===0||i===all.length-1)markup+='<text x="'+x(i)+'" y="'+(H-12)+'" text-anchor="middle" fill="#84968a" font-size="11">'+safe(r.date.slice(5))+'</text>';});
   svg.innerHTML=markup;
-  $("chartNote").textContent=all.length===1?"One day saved so far.":all.length+" days plotted · Latest "+fmt(all[all.length-1].date);
+  $("chartNote").textContent=all.length===1?"First rating snapshot. The graph grows as new checks are published.":all.length+" dated snapshots recorded · Last published "+fmt(all[all.length-1].date);
 }
-function render(){
-  current=combined();
-  $("dashboard").hidden=false;
-  if(!current.length){
-    ["score","google","uber","dash"].forEach(id=>$(id).textContent="—");
-    $("lastDate").textContent="No ratings saved yet";
-    $("rows").innerHTML='<tr><td colspan="6">No ratings. Add one using the form above.</td></tr>';
-    graph([]);return;
-  }
-  const last=current[current.length-1];
-  $("score").innerHTML=score(last)+'<small>/100</small>';
-  for(const [id,key] of [["google","google"],["uber","uber"],["dash","dash"]])$(id).innerHTML=last[key].toFixed(1)+'<small>/5</small>';
-  $("lastDate").textContent="Latest rating: "+fmt(last.date);
-  $("rows").innerHTML=current.slice().reverse().map(r=>'<tr><td>'+esc(fmt(r.date))+'</td><td>'+r.google.toFixed(1)+'</td><td>'+r.uber.toFixed(1)+'</td><td>'+r.dash.toFixed(1)+'</td><td>'+score(r)+'</td><td><div class="history-actions"><button type="button" data-edit="'+esc(r.date)+'">Edit</button><button type="button" class="delete" data-delete="'+esc(r.date)+'">Delete</button></div></td></tr>').join("");
-  graph(current);
-}
-$("ratingForm").addEventListener("submit",e=>{
-  e.preventDefault();
-  const date=$("inputDate").value,raw={date,google:$("inputGoogle").value,uber:$("inputUber").value,dash:$("inputDash").value};
-  const r=clean(raw);
-  if(!r){setStatus("Please enter a valid date and three ratings from 0 to 5.",true);return;}
-  edits.entries[date]=r;edits.hidden=edits.hidden.filter(d=>d!==date);
-  if(!persist()){setStatus("Browser storage is blocked; your rating may be lost after refresh.",true);return;}
-  render();setStatus("✓ Saved "+fmt(date)+" · Score "+score(r)+"/100. Your graph is updated.");
-});
-$("inputDate").addEventListener("change",()=>{fillForm($("inputDate").value);setStatus("");});
-$("rows").addEventListener("click",e=>{
-  const edit=e.target.closest("[data-edit]");
-  if(edit){fillForm(edit.dataset.edit);setStatus("Editing "+fmt(edit.dataset.edit));$("update").scrollIntoView({behavior:"smooth",block:"start"});return;}
-  const del=e.target.closest("[data-delete]");
-  if(!del)return;
-  const date=del.dataset.delete;
-  if(!confirm("Delete the rating for "+fmt(date)+" from this browser?"))return;
-  delete edits.entries[date];if(!edits.hidden.includes(date))edits.hidden.push(date);
-  if(!persist()){setStatus("Unable to save deletion in browser.",true);return;}
-  render();setStatus("Removed "+fmt(date)+".");fillForm(localToday());
-});
-$("exportCsv").addEventListener("click",()=>{
-  const lines=["date,google,uber_eats,doordash",...combined().map(r=>[r.date,r.google,r.uber,r.dash].join(","))];
-  const url=URL.createObjectURL(new Blob([lines.join("\n")+"\n"],{type:"text/csv;charset=utf-8"}));
-  const a=document.createElement("a");a.href=url;a.download="south-geelong-ratings-"+localToday()+".csv";a.click();
-  setTimeout(()=>URL.revokeObjectURL(url),2000);setStatus("Backup downloaded.");
-});
-async function init(){
-  loadEdits();
+async function refresh(){
   try{
-    const res=await fetch(SOURCE,{cache:"no-store"});
-    if(!res.ok)throw new Error("Public baseline unavailable.");
-    baseline=parse(await res.text());
-  }catch(e){
-    if(!Object.keys(edits.entries).length){
-      $("error").className="status-note";$("error").hidden=false;
-      $("error").textContent="Could not load starting ratings; you can still add your own scores here.";
-    } else {setStatus("Showing this browser's saved ratings; public baseline unavailable.",true);}
-  }
-  render();fillForm(localToday());
+    const res=await fetch("./ratings.csv?t="+Date.now(),{cache:"no-store"});
+    if(!res.ok)throw new Error("Could not load the published rating history.");
+    const rows=parse(await res.text());if(!rows.length)throw new Error("No recorded rating snapshots.");
+    const last=rows[rows.length-1];
+    $("score").innerHTML=pulse(last)+'<small>/100</small>';
+    for(const [id,key] of [["google","google"],["uber","uber"],["dash","dash"]])$(""+id).innerHTML=last[key].toFixed(1)+'<small>/5</small>';
+    $("lastDate").textContent="Last recorded: "+fmt(last.date);
+    $("rows").innerHTML=rows.slice().reverse().map(r=>'<tr><td>'+safe(fmt(r.date))+'</td><td>'+r.google.toFixed(1)+'/5</td><td>'+r.uber.toFixed(1)+'/5</td><td>'+r.dash.toFixed(1)+'/5</td><td>'+pulse(r)+'</td></tr>').join("");
+    graph(rows);$("dashboard").hidden=false;$("error").hidden=true;
+  }catch(e){$("error").hidden=false;$("error").textContent="Rating data could not be refreshed. The last displayed values may be out of date. "+e.message;}
 }
-init();
+$("refresh").addEventListener("click",refresh);
+refresh();
+setInterval(refresh,15*60*1000);
 })();
-
 </script>
 </body>
 </html>
