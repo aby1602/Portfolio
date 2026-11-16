@@ -85,7 +85,7 @@
     $("scoreHeadline").textContent = currentScore >= 90 ? "A strong reputation." : currentScore >= 80 ? "Solid foundations." : currentScore >= 70 ? "Keep building trust." : "A chance to improve.";
     const delta = currentScore !== null && prevScore !== null ? currentScore - prevScore : null;
     $("scoreDelta").textContent = delta === null ? "◌  First verified baseline" : delta > 0 ? "↗  +" + delta + " points since " + prettyDate(previous.date, { year: undefined }) : delta < 0 ? "↘  " + delta + " points since " + prettyDate(previous.date, { year: undefined }) : "↔  No movement since " + prettyDate(previous.date, { year: undefined });
-    $("scoreAsOf").textContent = "Last rating check: " + prettyDate(current.date) + " · " + new Intl.DateTimeFormat("en-AU", { timeZone: ZONE, hour: "numeric", minute: "2-digit", hour12: true }).format(new Date(current.checkedAt)) + " AEDT";
+    $("scoreAsOf").textContent = "Last rating check: " + prettyDate(current.date) + " · " + new Intl.DateTimeFormat("en-AU", { timeZone: ZONE, hour: "numeric", minute: "2-digit", hour12: true, timeZoneName: "short" }).format(new Date(current.checkedAt));
     $("channelsAsOf").textContent = "PUBLIC SNAPSHOT · " + prettyDate(current.date).toUpperCase();
     $("platformGrid").innerHTML = platforms.map((p) => {
       const r = current.ratings[p.key] || {};
