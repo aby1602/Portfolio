@@ -1,124 +1,135 @@
 <!doctype html>
 <html lang="en-AU">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0a111a">
-  <meta name="description" content="ARM-E Space: an unofficial personal customer feedback and shift planning dashboard for Grill'd South Geelong.">
-  <title>ARM-E Space · South Geelong</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./app.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f8f5">
+<meta name="description" content="Simple daily public review ratings tracker for Grill'd South Geelong.">
+<title>South Geelong · Review Dashboard</title>
+<style>
+:root{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#15251e;background:#f5f8f5;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}
+main{max-width:1120px;margin:0 auto;padding:38px 24px 70px}
+header{display:flex;gap:15px;align-items:center;justify-content:space-between;margin-bottom:33px}
+.logo{height:38px;width:38px;border-radius:12px;background:#145c47;color:white;font-size:23px;font-weight:800;display:grid;place-items:center}
+.brand{display:flex;align-items:center;gap:11px}
+.brand strong{display:block;font-size:16px;letter-spacing:-.4px}.brand small{display:block;font-size:10px;color:#71817a;margin-top:3px;letter-spacing:.08em}
+a{color:#12664d}
+.button{background:#16634b;color:#fff!important;border:0;border-radius:10px;padding:12px 16px;text-decoration:none;font-size:13px;font-weight:700;display:inline-flex;gap:8px;align-items:center}
+.button:hover{background:#0e4f3b}
+.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin:28px 0}
+.eyebrow{font-size:11px;letter-spacing:.16em;font-weight:800;color:#56816f}
+h1{font-size:clamp(29px,4vw,45px);line-height:1.1;letter-spacing:-.055em;margin:7px 0 10px}
+p{color:#677870;font-size:13px;line-height:1.6;margin:0}
+.update-date{white-space:nowrap;text-align:right;font-size:11px;color:#74857b;margin-bottom:4px}
+.card-grid{display:grid;grid-template-columns:1.35fr repeat(3,1fr);gap:13px;margin:25px 0}
+.card{background:#fff;border:1px solid #e1e9e2;border-radius:16px;padding:23px;box-shadow:0 5px 20px #173c2410}
+.card strong{display:block;font-size:35px;letter-spacing:-.06em;line-height:1.18;margin-top:17px}
+.card strong small{font-size:16px;font-weight:500;color:#a0aba2}
+.card .kicker{color:#76877c;font-size:11px;font-weight:750;letter-spacing:.05em}
+.card>p{margin-top:9px;font-size:11px}
+.score-card{background:#175a44;color:white;border-color:#175a44}
+.score-card .kicker,.score-card p{color:#c1ded0}
+.score-card strong{font-size:50px}
+.score-card strong small{color:#b3dbbe}
+.section{margin-top:28px;background:#fff;border:1px solid #e1e9e2;border-radius:17px;padding:25px;box-shadow:0 5px 20px #173c2410}
+.section h2{font-size:19px;letter-spacing:-.035em;margin:0 0 6px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:15px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin:13px 0 3px}
+.legend span{display:flex;align-items:center;gap:7px;font-size:11px;color:#64756c}
+.dot{height:8px;width:8px;border-radius:50%;display:inline-block}
+svg{display:block;width:100%;height:auto;max-height:380px;margin-top:14px}
+.chart-note{font-size:11px;color:#7b8b83}
+table{border-collapse:collapse;width:100%;text-align:left;font-size:12px}
+thead th{color:#7d8c83;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:13px 12px;background:#f6f9f6}
+tbody td{border-top:1px solid #edf1ed;padding:12px;color:#516359}
+tbody td:first-child{font-weight:700;color:#243b30}
+tbody td:last-child{font-weight:800;color:#12614a}
+.scroller{overflow-x:auto;border:1px solid #e5ebe5;border-radius:11px;margin-top:14px}
+th,td{min-width:120px}
+footer{font-size:11px;color:#74847a;margin-top:21px;display:flex;justify-content:space-between;gap:20px}
+footer p{font-size:11px}footer a{font-weight:650;text-decoration:none}
+.error{padding:25px;background:#fff3ee;color:#943e22;border:1px solid #e7c2b1;border-radius:12px}
+@media(max-width:850px){.card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{display:block}.update-date{text-align:left;margin-top:13px}}
+@media(max-width:530px){main{padding:22px 14px 45px}.card-grid{gap:9px}.card{padding:18px}.card strong{font-size:30px}.score-card strong{font-size:41px}.card .kicker{font-size:10px}.section{padding:17px}.section-head{display:block}.button{font-size:11px;padding:10px 12px}header{margin-bottom:25px}footer{display:block}footer p{margin-bottom:9px}}
+</style>
 </head>
 <body>
-<div class="shell">
-  <aside class="sidebar" aria-label="Main navigation">
-    <a href="#overview" class="brand" aria-label="ARM-E Space home"><span class="brand-mark">A<span>✳</span></span><span><strong>ARM-E</strong><small>SPACE / 01</small></span></a>
-    <div class="nav-group-label">WORKSPACE</div>
-    <nav class="navigation">
-      <a href="#overview" data-view-link="overview" class="nav-link active"><span class="nav-symbol">◫</span> Overview <span class="nav-end">01</span></a>
-      <a href="#feedback" data-view-link="feedback" class="nav-link"><span class="nav-symbol">◎</span> Review radar <span class="nav-end">02</span></a>
-      <a href="#shift" data-view-link="shift" class="nav-link"><span class="nav-symbol">▦</span> Shift journal <span class="nav-end">03</span></a>
-      <a href="#method" data-view-link="method" class="nav-link"><span class="nav-symbol">⌁</span> Data & scoring <span class="nav-end">04</span></a>
-    </nav>
-    <div class="nav-group-label nav-second">QUICK LINKS</div>
-    <a class="outside-link" href="https://www.google.com/maps/search/?api=1&query=Grilld%20Burgers%20Geelong%20South" target="_blank" rel="noopener noreferrer">Google reviews <span>↗</span></a>
-    <a class="outside-link" href="https://www.ubereats.com/au/store/grilld-south-geelong/2gh8t1UWX7C-uvwuHaLikQ" target="_blank" rel="noopener noreferrer">Uber Eats <span>↗</span></a>
-    <a class="outside-link" href="https://www.doordash.com/store/grilld-south-geelong-40957569/" target="_blank" rel="noopener noreferrer">DoorDash <span>↗</span></a>
-    <div class="sidebar-bottom"><div class="tiny-status"><i></i> PERSONAL WORKSPACE</div><p>Private shift notes are stored only in this browser. Public reviews are sourced separately.</p><a href="https://github.com/aby1602/Portfolio/tree/main/arm-e-space" target="_blank" rel="noopener noreferrer">GitHub source ↗</a></div>
-  </aside>
-
-  <div class="workspace">
-    <header class="topbar">
-      <div class="breadcrumbs"><span>ARM-E SPACE</span><span class="breadcrumb-divider">/</span><strong>SOUTH GEELONG</strong></div>
-      <div class="top-actions"><span class="sync-pill"><span class="sync-dot"></span> PUBLIC DATA</span><time id="liveClock"></time><div class="avatar" title="Personal workspace">AK</div></div>
-    </header>
-
-    <main class="main-content">
-      <section id="overview" data-view class="view">
-        <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> RESTAURANT PERFORMANCE INTELLIGENCE</div><h1>Good morning, <em>Abi.</em> <span class="heading-spark">✳</span></h1><p>Your South Geelong command centre. One clear view of feedback, momentum and what needs attention.</p></div><div class="heading-date"><span id="todayLabel">TUESDAY, 17 NOV</span><small>MELBOURNE / LOCAL TIME</small></div></div>
-
-        <div class="score-area">
-          <article class="panel score-card">
-            <div class="panel-kicker"><span>01 / CUSTOMER EXPERIENCE</span><span class="chip lime"><span class="tiny-circle"></span> VERIFIED SNAPSHOT</span></div>
-            <div class="score-content">
-              <div class="score-ring" id="scoreRing"><div class="ring-inner"><span class="ring-label">PULSE SCORE</span><strong id="pulseScore">—</strong><span class="ring-max">OUT OF 100</span></div></div>
-              <div class="score-context"><span class="mini-eyebrow">CUSTOMER SENTIMENT</span><h2 id="scoreHeadline">Reading the signals</h2><p>Weighted from public Google, Uber Eats and DoorDash ratings. This is your own reputation indicator, not an official Grill'd score.</p><div class="score-trend" id="scoreDelta">Awaiting verified snapshots</div><div class="asof" id="scoreAsOf">Loading latest source checks...</div></div>
-            </div>
-            <div class="score-footer"><span><b class="footer-dot"></b> Evidence-based, never simulated</span><a href="#method" data-view-link="method">How it's scored <span>↗</span></a></div>
-          </article>
-
-          <article class="panel focus-card">
-            <div class="panel-kicker"><span>02 / TODAY'S BRIEF</span><span class="focus-icon">✦</span></div>
-            <div class="focus-top"><span class="focus-overline">THE PRIORITY</span><h2>Make every<br><em>handoff count.</em></h2><p>Based on accessible historical feedback, these are three smart places to focus today.</p></div>
-            <div id="focusList" class="focus-list"></div>
-            <div class="focus-foot">ACTIONABLE, NOT JUST ANALYTICAL <span>↗</span></div>
-          </article>
-        </div>
-
-        <div class="section-head"><div><span class="micro-title">THE CHANNELS</span><h2>Reputation at a glance</h2></div><span class="muted-asof" id="channelsAsOf"></span></div>
-        <div class="platform-grid" id="platformGrid"></div>
-
-        <div class="lower-grid">
-          <article class="panel graph-panel">
-            <div class="panel-top"><div><span class="micro-title">EVERY DAY MATTERS</span><h2>Customer score history</h2><p>Only actual dated snapshots appear on this chart.</p></div><div class="period-switch" role="group" aria-label="Chart time range"><button type="button" data-range="7" class="selected">7D</button><button type="button" data-range="30">30D</button><button type="button" data-range="all">ALL</button></div></div>
-            <div class="chart-legend"><span><i class="legend-dot dot-overall"></i> Pulse score</span><span><i class="legend-dot dot-google"></i> Google</span><span><i class="legend-dot dot-uber"></i> Uber Eats</span><span><i class="legend-dot dot-dd"></i> DoorDash</span></div>
-            <div class="chart-wrap" id="chartWrap"><svg id="trendSvg" viewBox="0 0 760 260" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Verified dated customer ratings trend chart"></svg></div>
-            <div class="chart-caption" id="chartCaption">Loading verified history…</div>
-          </article>
-          <article class="panel next-panel">
-            <div class="panel-top"><div><span class="micro-title">STAY ON TRACK</span><h2>Shift readiness</h2><p>Your own private checklist for today.</p></div><span class="completion-chip" id="completionChip">0/5</span></div>
-            <div id="quickChecklist" class="checklist"></div>
-            <div class="check-progress"><span id="checkProgressText">Progress</span><span id="checkPercent">0%</span></div>
-            <div class="progress-track"><div id="checkFill"></div></div>
-            <a href="#shift" data-view-link="shift" class="text-action">Open shift journal <span>↗</span></a>
-          </article>
-        </div>
-
-        <div class="section-head"><div><span class="micro-title">REVIEW RADAR</span><h2>Signals worth reading</h2></div><a href="#feedback" data-view-link="feedback" class="text-action">Explore all feedback ↗</a></div>
-        <div class="insight-grid" id="insightGrid"></div>
-        <div class="disclosure"><span>ⓘ</span><p>Customer scores are public-review estimates. New reviews are not guaranteed to be fully visible on public platforms, and no private Grill'd systems are connected.</p></div>
-      </section>
-
-      <section id="feedback" data-view class="view" hidden>
-        <div class="page-heading simple"><div><div class="eyebrow"><span class="eyebrow-line"></span> FEEDBACK INTELLIGENCE</div><h1>Review <em>radar.</em></h1><p>Catch the compliments. Find the friction. Turn patterns into better shifts.</p></div></div>
-        <div class="stat-strip"><div><span>LATEST REVIEW CHECK</span><strong id="reviewCheckStatus">Checking…</strong></div><div><span>HISTORICAL HIGHLIGHTS</span><strong id="highlightCount">—</strong></div><div><span>VERIFIED NEW REVIEWS</span><strong id="newCount">—</strong></div></div>
-        <div class="feedback-controls"><div class="filter-group" role="group" aria-label="Review filters"><button type="button" data-filter="all" class="selected">All feedback</button><button type="button" data-filter="positive">Wins</button><button type="button" data-filter="watch">To improve</button></div><p>Historical reviews are clearly labelled; they're not claimed as newly posted.</p></div>
-        <div class="feedback-grid" id="feedbackGrid"></div>
-        <div class="disclosure"><span>ⓘ</span><p>Ratings and written reviews can be incomplete or cached on public websites. This radar shows selected verifiable examples, not every customer review.</p></div>
-      </section>
-
-      <section id="shift" data-view class="view" hidden>
-        <div class="page-heading simple"><div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR PRIVATE OPERATING LOG</div><h1>Own the <em>shift.</em></h1><p>A low-friction place to reflect, reset and build better habits each day.</p></div></div>
-        <div class="private-notice"><span>◈</span><div><strong>Private by design</strong><p>Everything on this page stays in your current browser's local storage, not GitHub. Export a backup before clearing browser data or switching devices.</p></div></div>
-        <div class="journal-grid">
-          <article class="panel journal-panel"><div class="panel-top"><div><span class="micro-title">DAILY CHECK-IN</span><h2>Shift scorecard</h2></div><label class="date-label">DATE <input type="date" id="journalDate"></label></div>
-            <p class="panel-help">Rate your own shift from 1 (needs work) to 5 (excellent). Self-assessment is separate from public review scores.</p>
-            <div id="metricControls" class="metric-controls"></div>
-            <div class="journal-score"><div><small>MY SHIFT SCORE</small><strong id="shiftScore">Not rated</strong></div><span>SELF-REPORTED / 100</span></div>
-            <label class="note-label" for="journalNotes">SHIFT NOTES / WINS / NEXT STEPS</label><textarea id="journalNotes" rows="5" placeholder="What went well? What would I improve? Any coaching or follow-ups for tomorrow?"></textarea>
-            <div class="journal-actions"><button type="button" id="saveJournal" class="primary-button">Save today's log <span>↗</span></button><button type="button" id="exportJournal" class="secondary-button">Export backup ↓</button></div><p id="saveStatus" class="form-status" aria-live="polite"></p>
-          </article>
-          <article class="panel journal-side"><div class="panel-top"><div><span class="micro-title">YOUR PERSONAL TRACKER</span><h2>Recent logs</h2><p>Build your own operational history.</p></div></div><div id="journalHistory" class="journal-history"></div><div class="journal-side-foot"><strong>Small improvements compound.</strong><p>Score the shift, note the lesson, and carry one improvement into the next day.</p></div></article>
-        </div>
-      </section>
-
-      <section id="method" data-view class="view" hidden>
-        <div class="page-heading simple"><div><div class="eyebrow"><span class="eyebrow-line"></span> TRANSPARENCY & TRUST</div><h1>Behind the <em>numbers.</em></h1><p>Every point comes from a dated public observation. Here's what the dashboard can and cannot tell you.</p></div></div>
-        <div class="method-grid">
-          <article class="panel method-hero"><span class="micro-title">CUSTOMER PULSE / FORMULA</span><h2>Simple, explainable, consistent.</h2><div class="formula">({<span>Google × 50%</span>} + {<span>Uber Eats × 30%</span>} + {<span>DoorDash × 20%</span>}) ÷ 5 × 100</div><p>Weights reflect an editorial dashboard choice. They're not based on Grill'd policy, and sources do not measure identical customer populations. Missing ratings mean no score for that date.</p></article>
-          <article class="panel method-side"><span class="micro-title">IMPORTANT DISTINCTION</span><h2>Review score ≠ store performance.</h2><p>This site does not know sales, service times, team performance, orders, complaints received internally or official Grill'd audits. Your private shift score is a self-report, not verified operational data.</p></article>
-        </div>
-        <div class="panel history-panel"><div class="panel-top"><div><span class="micro-title">AUDIT TRAIL</span><h2>Verified snapshots</h2><p>Rating counts marked “+” are lower-bound estimates, not precise counts.</p></div></div><div class="history-table-wrap"><table class="history-table"><thead><tr><th>DATE</th><th>GOOGLE</th><th>UBER EATS</th><th>DOORDASH</th><th>PULSE</th><th>COVERAGE</th></tr></thead><tbody id="snapshotRows"></tbody></table></div></div>
-        <div class="method-footer"><p>Data file: <a href="./data/reviews.json" target="_blank" rel="noopener noreferrer">reviews.json ↗</a></p><p>Monitoring source: daily ChatGPT Grill'd Geelong Review Watch. The published chart changes only when this JSON is updated with verified observations.</p></div>
-      </section>
-    </main>
-    <footer class="footer"><span>ARM-E SPACE <b>✳</b> SOUTH GEELONG</span><span>UNOFFICIAL PERSONAL DASHBOARD · NOT AFFILIATED WITH GRILL'D</span><span>BUILT FOR BETTER SHIFTS / 2026</span></footer>
-  </div>
+<main>
+<header>
+ <div class="brand"><span class="logo">G</span><span><strong>South Geelong Reviews</strong><small>PERSONAL RATING TRACKER</small></span></div>
+ <a class="button" href="https://github.com/aby1602/Portfolio/edit/main/arm-e-space/ratings.csv" target="_blank" rel="noopener noreferrer">✎ Edit daily sheet</a>
+</header>
+<div class="hero">
+ <div><div class="eyebrow">GRILL'D SOUTH GEELONG</div><h1>Review dashboard</h1><p>Simple daily public ratings. Update one row in the sheet, and the graph follows.</p></div>
+ <div class="update-date" id="lastDate">Loading saved ratings…</div>
 </div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div id="error" hidden></div>
+<div id="dashboard" hidden>
+ <div class="card-grid">
+   <article class="card score-card"><div class="kicker">OVERALL DAILY SCORE</div><strong id="score">—</strong><p>Custom rating index · out of 100</p></article>
+   <article class="card"><div class="kicker">GOOGLE</div><strong id="google">—</strong><p>Out of 5 stars</p></article>
+   <article class="card"><div class="kicker">UBER EATS</div><strong id="uber">—</strong><p>Out of 5 stars</p></article>
+   <article class="card"><div class="kicker">DOORDASH</div><strong id="dash">—</strong><p>Out of 5 stars</p></article>
+ </div>
+ <section class="section">
+   <div class="section-head"><div><h2>Daily rating trend</h2><p>Your rating history, based only on dates entered in the sheet.</p></div></div>
+   <div class="legend"><span><i class="dot" style="background:#12634a"></i>Overall score</span><span><i class="dot" style="background:#3996bd"></i>Google</span><span><i class="dot" style="background:#9666bd"></i>Uber Eats</span><span><i class="dot" style="background:#e6a044"></i>DoorDash</span></div>
+   <svg id="trend" viewBox="0 0 900 300" role="img" aria-label="Daily score trend"></svg>
+   <p id="chartNote" class="chart-note"></p>
+ </section>
+ <section class="section">
+   <div class="section-head"><div><h2>Daily history</h2><p>Ratings entered in the spreadsheet.</p></div><a href="./ratings.csv" download="south-geelong-ratings.csv" style="font-size:12px;font-weight:750">Download CSV ↧</a></div>
+   <div class="scroller"><table><thead><tr><th>Date</th><th>Google /5</th><th>Uber Eats /5</th><th>DoorDash /5</th><th>Score /100</th></tr></thead><tbody id="rows"></tbody></table></div>
+ </section>
+</div>
+<footer><p>Score = 50% Google + 30% Uber Eats + 20% DoorDash, converted to /100. Unofficial, not a Grill'd company KPI.</p><a href="https://github.com/aby1602/Portfolio/blob/main/arm-e-space/ratings.csv" target="_blank" rel="noopener noreferrer">View rating sheet ↗</a></footer>
+</main>
+<script>
+(function(){
+const src="./ratings.csv";
+const $=(id)=>document.getElementById(id);
+const round=(n)=>Math.round(n);
+function fmt(d){const t=new Date(d+"T12:00:00+11:00");return Number.isNaN(t.getTime())?d:new Intl.DateTimeFormat("en-AU",{day:"numeric",month:"short",year:"numeric",timeZone:"Australia/Melbourne"}).format(t)}
+function xml(s){return String(s).replace(/[&<>"']/g,(c)=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function parse(csv){
+const lines=csv.trim().split(/\r?\n/), result=new Map();
+const header=(lines.shift()||"").trim().toLowerCase().split(",").map(s=>s.trim());
+if(header.join(",")!=="date,google,uber_eats,doordash")throw new Error("Sheet headings must be date,google,uber_eats,doordash.");
+lines.forEach((line)=>{if(!line.trim())return;const cols=line.split(",").map(s=>s.trim());if(cols.length!==4)return;
+const date=cols[0], vals=cols.slice(1).map(Number);
+if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||cols.slice(1).some(s=>s==="")||vals.some(v=>!Number.isFinite(v)||v<0||v>5))return;
+result.set(date,{date,google:vals[0],uber:vals[1],dash:vals[2],score:round((vals[0]*.5+vals[1]*.3+vals[2]*.2)*20)});
+});
+return Array.from(result.values()).sort((a,b)=>a.date.localeCompare(b.date));
+}
+function graph(entries){
+const svg=$("trend"), W=900,H=300,L=45,R=21,T=22,B=42,w=W-L-R,h=H-T-B;
+const all=entries.slice(-45),vals=all.flatMap(r=>[r.score,r.google*20,r.uber*20,r.dash*20]);
+const min=all.length?Math.max(0,Math.floor((Math.min(...vals)-8)/10)*10):0;
+const max=all.length?Math.min(100,Math.ceil((Math.max(...vals)+8)/10)*10):100;
+const lo=min===max?Math.max(0,min-10):min,hi=min===max?Math.min(100,max+10):max;
+const x=(i)=>L+(all.length===1?w/2:(i*w/(all.length-1))),y=(v)=>T+(hi-v)/(hi-lo)*h;
+let markup="";
+for(let i=0;i<=4;i++){const n=lo+(hi-lo)*i/4,py=y(n);markup+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+py+'" y2="'+py+'" stroke="#e7eee8" stroke-dasharray="4 5"/><text x="'+(L-9)+'" y="'+(py+4)+'" text-anchor="end" fill="#839288" font-size="11">'+Math.round(n)+'</text>'}
+const series=[["dash","#e6a044",r=>r.dash*20],["uber","#9666bd",r=>r.uber*20],["google","#3996bd",r=>r.google*20],["score","#12634a",r=>r.score]];
+series.forEach((s)=>{if(all.length>1){const path=all.map((r,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+y(s[2](r)).toFixed(1)).join(" ");markup+='<path d="'+path+'" fill="none" stroke="'+s[1]+'" stroke-width="'+(s[0]==="score"?3:2)+'" stroke-linecap="round" stroke-linejoin="round"/>'}
+all.forEach((r,i)=>{markup+='<circle cx="'+x(i)+'" cy="'+y(s[2](r))+'" r="'+(s[0]==="score"?5:3.5)+'" fill="'+s[1]+'" stroke="#fff" stroke-width="1.8"><title>'+xml(fmt(r.date)+" · "+s[0]+": "+Math.round(s[2](r))+"/100")+'</title></circle>'})});
+all.forEach((r,i)=>{if(all.length<=9||i%Math.ceil(all.length/8)===0||i===all.length-1)markup+='<text x="'+x(i)+'" y="'+(H-12)+'" text-anchor="middle" fill="#829185" font-size="11">'+xml(r.date.slice(5))+'</text>'});
+svg.innerHTML=markup;
+$("chartNote").textContent=all.length===1?"One day recorded so far; add new rows to see a trend.":all.length+" days plotted · Last saved "+fmt(all[all.length-1].date);
+}
+async function load(){
+try{const r=await fetch(src+"?v="+Date.now(),{cache:"no-store"});if(!r.ok)throw new Error("Could not load the rating sheet.");const entries=parse(await r.text());if(!entries.length)throw new Error("No valid rating rows found.");
+const last=entries[entries.length-1];
+$("score").innerHTML=last.score+'<small>/100</small>';$("google").innerHTML=last.google.toFixed(1)+'<small>/5</small>';$("uber").innerHTML=last.uber.toFixed(1)+'<small>/5</small>';$("dash").innerHTML=last.dash.toFixed(1)+'<small>/5</small>';
+$("lastDate").textContent="Last entered: "+fmt(last.date);
+$("rows").innerHTML=entries.slice().reverse().map(d=>'<tr><td>'+xml(fmt(d.date))+'</td><td>'+d.google.toFixed(1)+'</td><td>'+d.uber.toFixed(1)+'</td><td>'+d.dash.toFixed(1)+'</td><td>'+d.score+'</td></tr>').join("");
+graph(entries);$("dashboard").hidden=false;
+}catch(e){const err=$("error");err.hidden=false;err.className="error";err.textContent=e.message;$("lastDate").textContent="Ratings unavailable";}
+}
+load();
+})();
+</script>
 </body>
 </html>
